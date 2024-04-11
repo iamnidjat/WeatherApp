@@ -1,0 +1,45 @@
+﻿@using WeatherApp.ViewModels
+@model CompositeViewModel
+
+@*@{
+    ViewData["Title"] = "SearchCity";
+}*@
+
+<div class="container">
+    <form method="post">
+        <div class="sub-container">
+            <div class="form-group col-md-offset-3 col-md-5">
+                <h2>Search the weather forecast in a city</h2>
+                <label asp-for="@Model.SearchCityModel.CityName" style="font-family: Arial"></label>
+                <input asp-for="@Model.SearchCityModel.CityName" class="form-control" />
+                <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
+                <div class="systems">   
+                    <div>
+                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { @checked = "checked" })
+                        <label for="metric">Metric</label>
+                    </div>
+                    <div>
+                        @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial")
+                        <label for="imperial">Imperial</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-container">
+            <div class="form-group col-md-offset-3 col-md-5">
+                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+
+        <h2>Searched Cities:</h2>
+        <ul>
+            @foreach (var city in Model.SearchedCities)
+            {
+                <li>
+                    <a href="@Url.Action("City", "Forecast", new { city = city, system = Model.SystemModel.Units })">@city</a>
+                    <button class="removeCityButton" data-city="@city">X</button>
+                </li>
+            }
+        </ul>
+    </form>
+</div>
