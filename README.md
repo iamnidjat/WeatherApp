@@ -4,7 +4,8 @@ WeatherApp is a comprehensive weather application built using ASP.NET Core MVC, 
 
 ### Key Features:
 
-1. **User Authentication:** - Users can register and log in to the app securely.
+1. **User Authentication:**
+- Users can register and log in to the app securely.
 - Users can use "Remember Me" feature to log in automatically next time.
 - Forgot password functionality allows users to reset their passwords if forgotten.
 2. **Current Weather:** Users can view the current weather conditions for any location.
