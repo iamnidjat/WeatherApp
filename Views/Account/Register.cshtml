@@ -1,0 +1,56 @@
+﻿@using WeatherApp.ViewModels;
+@model RegisterModel;
+
+<h2>Registration</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            <label asp-for="UserName" id="UserNameLabel">Введите имя пользователя:</label><br />
+            @Html.TextBoxFor(t => t.UserName)
+            <span asp-validation-for="UserName" />
+        </div>
+        <div>
+            <label asp-for="Email" id="EmailLabel">Введите email:</label><br />
+            @Html.TextBoxFor(t => t.Email)
+            <span asp-validation-for="Email" />
+        </div>
+        <div>
+            <label asp-for="Password" id="PasswordLabel">Введите пароль:</label><br />
+            @Html.TextBoxFor(t => t.Password, new
+        {
+        type = "Password"
+        })
+            <span asp-validation-for="Password" />
+            <button id="show_password" class="btn btn-primary" type="button">
+                <span class="fa fa-eye-slash icon"></span>
+            </button>
+        </div>
+        <div>
+            <label asp-for="ConfirmPassword" id="ConfirmPasswordLabel">Повторите пароль:</label><br />
+            @Html.TextBoxFor(t => t.ConfirmPassword, new{
+        type = "Password"
+        })
+            <span asp-validation-for="ConfirmPassword" />
+            <button id="show_password2" class="btn btn-primary" type="button">
+                <span class="fa fa-eye-slash icon"></span>
+            </button>
+        </div>
+        <div>
+            <input type="submit" value="Регистрация" class="submitButton" />
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/js/register.js"></script>
+}
+
+@section Styles
+{
+    <link href="~/css/register.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+}

@@ -3,7 +3,7 @@ document.querySelectorAll('.removeCityButton').forEach(function (button) {
     button.addEventListener('click', function () {
         // Get the city name from the data attribute
         var cityName = this.getAttribute('data-city');
-        // Remove the city from the list visually
+        // Remove the city and its corresponding button from the list visually
         var cityItem = this.parentNode;
         cityItem.parentNode.removeChild(cityItem);
         // Send an AJAX request to your server to remove the city from the list

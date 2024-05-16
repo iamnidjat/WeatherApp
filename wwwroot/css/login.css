@@ -1,0 +1,29 @@
+﻿#UserName {
+    margin-bottom: 10px;
+    height: 38px;
+}
+
+#Password {
+    margin-bottom: 10px;
+    margin-left: 90px;
+    height: 38px;
+}
+
+.submitButton {
+    margin-left: 310px;
+    margin-top: 15px;
+    width: 130px;
+}
+
+.redirect {
+    margin-left: 150px;
+}
+
+#show_password {
+    margin-top: -5px;
+    margin-left: -45px;
+}
+
+#UserNameLabel, #PasswordLabel {
+    font-size: 18px;
+}

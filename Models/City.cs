@@ -4,22 +4,25 @@ namespace WeatherApp.Models
 {
     public class City
     {
-        [Display(Name = "City:")]
+        [Display(Name = "City: ")]
         public string? Name { get; set; }
 
-        [Display(Name = "Temperature:")]
+        [Display(Name = "Temperature: ")]
         public float Temp { get; set; }
 
-        [Display(Name = "Humidity")]
+        [Display(Name = "Humidity: ")]
         public int Humidity { get; set; }
 
-        [Display(Name = "Pressure:")]
+        [Display(Name = "Pressure: ")]
         public int Pressure { get; set; }
 
-        [Display(Name = "Wind Speed:")]
+        [Display(Name = "Wind Speed: ")]
         public float Wind { get; set; }
 
-        [Display(Name = "Weather Condition:")]
+        [Display(Name = "Weather Condition: ")]
         public string? Weather { get; set; }
+
+        [Display(Name = "Weather Icon: ")]
+        public string? WeatherIcon { get; set; }
     }
 }

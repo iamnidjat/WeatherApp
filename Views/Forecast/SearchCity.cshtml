@@ -1,9 +1,33 @@
-﻿@using WeatherApp.ViewModels
+﻿@using WeatherApp.Services.Implementations;
+@using WeatherApp.ViewModels
 @model CompositeViewModel
 
-@*@{
-    ViewData["Title"] = "SearchCity";
-}*@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successMessage" class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorMessage" class="alert alert-success" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h3>User: @User.Identity.Name</h3>
+    }
+    else
+    {
+        <h3>Guest</h3>
+    }
+</div>
+
+<p id="demo">Click the button to get your position:</p>
+<button onclick="getLocation()">Get your Location</button>
 
 <div class="container">
     <form method="post">
@@ -15,7 +39,7 @@
                 <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
                 <div class="systems">   
                     <div>
-                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { @checked = "checked" })
+                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { @checked = "checked"} )
                         <label for="metric">Metric</label>
                     </div>
                     <div>
@@ -28,18 +52,75 @@
         <div class="sub-container">
             <div class="form-group col-md-offset-3 col-md-5">
                 <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary">Search</button>
+                <button asp-controller="Forecast" asp-action="AdditionalData" class="btn btn-primary">Search2</button>
             </div>
         </div>
-
-        <h2>Searched Cities:</h2>
-        <ul>
-            @foreach (var city in Model.SearchedCities)
-            {
-                <li>
-                    <a href="@Url.Action("City", "Forecast", new { city = city, system = Model.SystemModel.Units })">@city</a>
-                    <button class="removeCityButton" data-city="@city">X</button>
-                </li>
-            }
-        </ul>
     </form>
+    
+    <h2>Searched Cities:</h2>
+    <ul>
+        @foreach (var city in Model.SearchedCities)
+        {
+            <li>
+                <a href="@Url.Action("City", "Forecast", new { city = city, system = Model.SystemModel.Units })">@city</a>
+                <button class="removeCityButton" data-city="@city">X</button>
+            </li>
+        }
+    </ul>
+@*
+    <a href="@Url.Action("FullWeatherData", "Forecast", new { forecastDataRequest = new ForecastDataRequest { Latitude = 40.3777M, Longitude = 49.892M } })">Get the full weather data in @Model.SearchCityModel.CityName </a>*@
+
 </div>
+
+@section Scripts
+{
+    <script src="~/js/city-management.js"></script>
+
+    <script type="text/javascript">
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            var latlondata = position.coords.latitude + "," + position.coords.longitude;
+            sendLocationData(latlondata);
+            var latlon = "Your Latitude Position is: " + position.coords.latitude + ", Your Longitude Position is: " + position.coords.longitude;
+            alert(latlon);
+        }
+          
+        function showError(error) {
+            if (error.code == 1) {
+                document.getElementById("demo").innerHTML = "User denied the request for Geolocation.";
+            } else if (err.code == 2) {
+                document.getElementById("demo").innerHTML = "Location information is unavailable.";
+            } else if (err.code == 3) {
+                document.getElementById("demo").innerHTML = "The request to get user location timed out.";
+            } else {
+                document.getElementById("demo").innerHTML = "An unknown error occurred.";
+            }
+        }
+
+        function sendLocationData(latlondata) {
+            $.ajax({
+                type: "POST",
+                url: "/SunriseSunset/AdditionalData",
+                data: { latlondata: latlondata },
+                success: function () {
+                    // Handle success if needed
+                },
+                error: function () {
+                    // Handle error if needed
+                }
+            });
+        }
+
+        setTimeout(function () {
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+        }, 10000); // 10 seconds
+    </script>
+}

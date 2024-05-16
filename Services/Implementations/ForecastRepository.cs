@@ -1,32 +1,52 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using RestSharp;
-using WeatherApp.Config;
+using System;
 using WeatherApp.Models.OpenWeatherMapModels;
 using WeatherApp.Services.Interfaces;
+using WeatherApp.Config;
 
-namespace WeatherApp.Services.Implementations
+public class CityNotFoundException : Exception
 {
-    public class ForecastRepository : IForecastRepository
+    public CityNotFoundException(string message) : base(message)
     {
-        public WeatherResponse GetForecast(string city, string system)
+    }
+}
+
+public class ForecastRepository : IForecastRepository
+{
+    private readonly ILogger<ForecastRepository> _logger;
+
+    public ForecastRepository(ILogger<ForecastRepository> logger)
+    {
+        _logger = logger;
+    }
+
+    public WeatherResponse GetForecast(string city, string system)
+    {
+        string openWeatherApiKey = Constants.OPEN_WEATHER_APPID;
+        string apiUrl = $"http://api.openweathermap.org/data/2.5/weather?q={city}&units={system}&APPID={openWeatherApiKey}";
+
+        var client = new RestClient(apiUrl);
+        var request = new RestRequest(Method.GET);
+        var response = client.Execute(request);
+
+        if (response.IsSuccessful)
         {
-            string openWeatherApiKey = Constants.OPEN_WEATHER_APPID;
-            string apiUrl = $"http://api.openweathermap.org/data/2.5/weather?q={city}&units={system}&APPID={openWeatherApiKey}";
-
-            var client = new RestClient(apiUrl);
-            var request = new RestRequest(Method.GET);
-            var response = client.Execute(request);
-
-            if (response.IsSuccessful)
+            var content = JsonConvert.DeserializeObject<JToken>(response.Content);
+            return content.ToObject<WeatherResponse>();
+        }
+        else
+        {
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                var content = JsonConvert.DeserializeObject<JToken>(response.Content);
-                return content.ToObject<WeatherResponse>();
+                throw new CityNotFoundException($"The city '{city}' does not exist!");
             }
             else
             {
-                // Handle error appropriately, throw an exception or return a default response
-                throw new Exception($"Failed to retrieve forecast data. Status code: {response.StatusCode}, Message: {response.ErrorMessage}");
+                _logger.LogError($"Failed to retrieve forecast data. Status code: {response.StatusCode}, Message: {response.ErrorMessage}");
+                // Throw another exception or handle the error as needed
+                throw new Exception("Failed to retrieve forecast data.");
             }
         }
     }

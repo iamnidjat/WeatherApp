@@ -9,37 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WeatherApp
 build_property.RootNamespace = WeatherApp
-build_property.ProjectDir = C:\Users\huawei\Desktop\WeatherApp\
+build_property.ProjectDir = C:\Important Files\MyProjects\WeatherApp\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\huawei\Desktop\WeatherApp
+build_property.MSBuildProjectDirectory = C:\Important Files\MyProjects\WeatherApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/huawei/Desktop/WeatherApp/Views/Forecast/City.cshtml]
+[C:/Important Files/MyProjects/WeatherApp/Views/Account/ChangeEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VFbWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Account/GetNotifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxHZXROb3RpZmljYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Forecast/City.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZWNhc3RcQ2l0eS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/huawei/Desktop/WeatherApp/Views/Forecast/SearchCity.cshtml]
+[C:/Important Files/MyProjects/WeatherApp/Views/Forecast/FullWeatherData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZWNhc3RcRnVsbFdlYXRoZXJEYXRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Forecast/SearchCity.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZWNhc3RcU2VhcmNoQ2l0eS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/huawei/Desktop/WeatherApp/Views/Shared/Error.cshtml]
+[C:/Important Files/MyProjects/WeatherApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/huawei/Desktop/WeatherApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Important Files/MyProjects/WeatherApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/huawei/Desktop/WeatherApp/Views/_ViewImports.cshtml]
+[C:/Important Files/MyProjects/WeatherApp/Views/SunriseSunset/AdditionalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VucmlzZVN1bnNldFxBZGRpdGlvbmFsRGF0YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/huawei/Desktop/WeatherApp/Views/_ViewStart.cshtml]
+[C:/Important Files/MyProjects/WeatherApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/huawei/Desktop/WeatherApp/Views/Shared/_Layout.cshtml]
+[C:/Important Files/MyProjects/WeatherApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ainogv7fv6

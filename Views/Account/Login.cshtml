@@ -1,0 +1,45 @@
+﻿@using WeatherApp.ViewModels;
+@model LoginModel;
+
+<h2>Вход в MyStat</h2>
+
+@using(Html.BeginForm())
+{
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="form-group">
+            <label asp-for="UserName" id="UserNameLabel">Введите имя пользователя:</label>
+            @Html.TextBoxFor(t => t.UserName)
+            <span asp-validation-for="UserName" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" id="PasswordLabel">Введите пароль:</label>
+            @Html.TextBoxFor(t => t.Password, new{
+                type = "Password"
+            })
+            <span asp-validation-for="Password" />
+           @* <div class="input-group-append">*@
+                <button id="show_password" class="btn btn-primary" type="button">
+                    <span class="fa fa-eye-slash icon"></span>
+                </button>
+            @*</div>*@
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Войти" class="submitButton" />
+        </div>
+    </div>
+}
+
+<a asp-action="Register" asp-controller="Account" class="redirect">Регистрация</a>
+
+@section Scripts
+{
+    <script src="~/js/login.js"></script>
+}
+
+@section Styles
+{
+    <link href="~/css/login.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+}

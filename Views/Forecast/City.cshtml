@@ -1,46 +1,55 @@
-﻿@using WeatherApp.Models
-@model City
-
-@*@{
-    ViewData["Title"] = "City";
-}*@
+﻿@using WeatherApp.ViewModels
+@model CompositeSearchModel
 
 <div class="container">
+    @if (Model.City != null)
+    {
+        <div class="sub-container">
 
-    <div class="container">
+            <div class="form-group col-md-offset-3 col-md-5">
 
-        <div class="form-group col-md-offset-3 col-md-5">
+                <h2>Forecast for the selected city</h2>
 
-            <h2>Forecast for the selected city</h2>
+                <label asp-for="@Model.City.Name"></label>
+                <span>@Model.City.Name</span>
+                <br />
 
-            <label asp-for="Name"></label>
-            <span>@Model.Name</span>
-            <br />
+                <label asp-for="@Model.City.Temp"></label>
+                <span>@Model.City.Temp °C</span>
+                <br />
 
-            <label asp-for="Temp"></label>
-            <span>@Model.Temp °C</span>
-            <br />
+                <label asp-for="@Model.City.Humidity"></label>
+                <span>@Model.City.Humidity %</span>
+                <br />
 
-            <label asp-for="Humidity"></label>
-            <span>@Model.Humidity %</span>
-            <br />
+                <label asp-for="@Model.City.Pressure"></label>
+                <span>@Model.City.Pressure Hpa</span>
+                <br />
 
-            <label asp-for="Pressure"></label>
-            <span>@Model.Pressure Hpa</span>
-            <br />
+                <label asp-for="@Model.City.Wind"></label>
+                <span>@Model.City.Wind Km/h</span>
+                <br />
 
-            <label asp-for="Wind"></label>
-            <span>@Model.Wind Km/h</span>
-            <br />
+                <label asp-for="@Model.City.Weather"></label>
+                <span>@Model.City.Weather</span>
+                <br />
 
-            <label asp-for="Weather"></label>
-            <span>@Model.Weather</span>
+                <label asp-for="@Model.City.WeatherIcon"></label>
+                <span><img src="@Model.City.WeatherIcon" title="Weather Icon" /></span>
+            </div>
 
         </div>
-
-    </div>
-
+    }
+    else if (Model.NotFoundModel != null)
+    {
     <div class="container">
+        <div class="alert alert-danger" role="alert">
+            @Model.NotFoundModel.ErrorMessage
+        </div>
+    </div>
+    }
+
+    <div class="sub-container">
 
         <div class="form-group col-md-offset-3 col-md-5">
 

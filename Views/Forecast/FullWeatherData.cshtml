@@ -1,0 +1,41 @@
+﻿@using WeatherApp.Models
+@model FullWeatherData
+
+<div class="container">
+
+    <div class="sub-container">
+
+        <div class="form-group col-md-offset-3 col-md-5">
+
+            <h2>Precise Forecast for the selected city</h2>
+
+            <label asp-for="Times"></label>
+
+            @foreach(var times in Model.Times)
+            {
+                <div>@times</div>
+            }
+
+            <label asp-for="Temperatures"></label>
+
+            @foreach(var temp in Model.Temperatures)
+            {
+                <div>@temp</div>
+            }
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="form-group col-md-offset-3 col-md-5">
+
+            <form method="get">
+                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-success">Return</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
