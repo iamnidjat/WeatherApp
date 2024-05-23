@@ -18,7 +18,7 @@ WeatherApp is a comprehensive weather application built using ASP.NET Core MVC, 
 9. **Dark/Light Mode:** Customize the app's appearance based on preference for improved readability.
 10. **Sunrise/Sunset:** Retrieve sunrise and sunset times for any location.
 11. **Air Pollution Data:** Access air pollution information to stay informed about environmental conditions.
-12. **Favorite Locations:** Save favorite locations for easy access to frequently visited cities.
+12. **Favorite Locations:** Save favorite locations for easy access to frequently visited cities (to do it you need to register).
 13. **Subscription Notifications:** Subscribe to weather alerts via in-app notifications and email, with the option to enable/disable alerts (to do it you need to register).
 14. **Weather Safety Tips:** Receive tips for dealing with dangerous weather conditions to ensure user safety.
 
