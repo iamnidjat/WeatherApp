@@ -37,12 +37,12 @@ else if (TempData["ErrorMessage"] != null)
                 <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
                 <div class="systems">   
                     <div>
-                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { id = "metricRadio" } )
+                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { @checked = "checked"} )
                         <label asp-for="@Model.SystemModel.Units">Metric</label>
                         <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
                     </div>
                     <div>
-                        @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial", new { id = "imperialRadio" })
+                        @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial")
                         <label asp-for="@Model.SystemModel.Units">Imperial</label>
                         <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
                     </div>
@@ -51,7 +51,7 @@ else if (TempData["ErrorMessage"] != null)
         </div>
         <div class="sub-container">
             <div class="form-group col-md-offset-3 col-md-5">               
-                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary" disabled>Search</button>
+                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary">Search</button>
                 <button type="button" class="btn btn-primary" onclick="updateHref()">Get the sunrise/sunset data</button>
                 <a id="search2Link" style="display: none;"></a>
                 <button type="button" class="btn btn-primary" onclick="updateHref2()">Get the full weather data</button>
@@ -208,27 +208,5 @@ else if (TempData["ErrorMessage"] != null)
             document.getElementById('successMessage').classList.add('hidden');
             document.getElementById('errorMessage').classList.add('hidden');
         }, 10000); // 10 seconds
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var searchButton = document.getElementById('searchButton');
-            var metricRadio = document.getElementById('metricRadio');
-            var imperialRadio = document.getElementById('imperialRadio');
-
-            function updateSearchButtonState() {
-                if (metricRadio.checked || imperialRadio.checked) {
-                    searchButton.disabled = false;
-                    alert("sex")
-                } else {
-                    searchButton.disabled = true;
-                    alert("porno")
-                }
-            }
-
-            metricRadio.addEventListener('change', updateSearchButtonState);
-            imperialRadio.addEventListener('change', updateSearchButtonState);
-
-            // Initialize button state
-            updateSearchButtonState();
-        });
     </script>
 }
