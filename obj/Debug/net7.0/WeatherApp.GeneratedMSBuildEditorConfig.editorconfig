@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Important Files/MyProjects/WeatherApp/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Important Files/MyProjects/WeatherApp/Views/Account/GetNotifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxHZXROb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,6 +38,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Important Files/MyProjects/WeatherApp/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/AirQuality/City.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWlyUXVhbGl0eVxDaXR5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/AirQuality/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWlyUXVhbGl0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/FavouriteLocations/AddFLocation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlTG9jYXRpb25zXEFkZEZMb2NhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/FavouriteLocations/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF2b3VyaXRlTG9jYXRpb25zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Forecast/AirQuality.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZWNhc3RcQWlyUXVhbGl0eS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Important Files/MyProjects/WeatherApp/Views/Forecast/City.cshtml]
@@ -58,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Important Files/MyProjects/WeatherApp/Views/SunriseSunset/AdditionalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VucmlzZVN1bnNldFxBZGRpdGlvbmFsRGF0YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/SunriseSunset/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VucmlzZVN1bnNldFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Important Files/MyProjects/WeatherApp/Views/_ViewImports.cshtml]

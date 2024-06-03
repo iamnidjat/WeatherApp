@@ -1,9 +1,10 @@
 ﻿using WeatherApp.Models.SunriseSunsetModels;
+using static WeatherApp.Services.Implementations.GetAdditionalDataRepository;
 
 namespace WeatherApp.Services.Interfaces
 {
     public interface IGetAdditionalDataRepository
     {
-        Root GetAdditionalData(decimal lat, decimal lng, string timezone = null, string date = null, string startDate = null, string endDate = null);
+        Root GetAdditionalData(SunriseSunsetModel sunriseSunsetModel);
     }
 }

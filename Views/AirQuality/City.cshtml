@@ -1,0 +1,57 @@
+﻿@model CompositeAirQualitySearchModel
+
+<div class="container">
+    @if (Model.AirQualityDTO != null)
+    {
+        <div class="sub-container">
+
+            <div class="form-group col-md-offset-3 col-md-5">
+
+                <h2>Air Quality for the selected city</h2>
+
+                <label asp-for="@Model.AirQualityDTO.Times"></label>
+
+                @foreach (var times in Model.AirQualityDTO.Times)
+                {
+                    <div>@times</div>
+                }
+
+                <label asp-for="@Model.AirQualityDTO.Temperatures"></label>
+
+                @foreach (var temp in Model.AirQualityDTO.Temperatures)
+                {
+                    @if (temp == null)
+                    {
+                        <div>No data</div>
+                    }
+                    else
+                    {
+                        <div>@temp</div>
+                    }
+                }
+            </div>
+
+        </div>
+
+
+        <div class="sub-container">
+
+            <div class="form-group col-md-offset-3 col-md-5">
+
+                <form method="get">
+                    <button asp-controller="AirQuality" asp-action="Index" class="btn btn-success">Return</button>
+                </form>
+
+            </div>
+
+        </div>
+    }
+    else if (Model.NotFoundModel != null)
+    {
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                @Model.NotFoundModel.ErrorMessage
+            </div>
+        </div>
+    }
+</div>

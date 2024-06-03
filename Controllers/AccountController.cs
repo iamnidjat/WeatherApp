@@ -6,7 +6,6 @@ using WeatherApp.ViewModels;
 using System.Security.Claims;
 using WeatherApp.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
 using BCrypt.Net;
 using BC = BCrypt.Net.BCrypt;
 using WeatherApp.Services.Interfaces;
@@ -42,6 +41,21 @@ namespace WeatherApp.Controllers
                 if (user != null && BC.EnhancedVerify(model.Password, user!.Password, HashType.SHA512))
                 {
                     await Authenticate(model.UserName);
+
+                    // Set authentication cookie
+                    Response.Cookies.Append("UserId", user.Id.ToString(), new CookieOptions
+                    {
+                        Expires = DateTimeOffset.UtcNow.AddDays(30) // Cookie expires in 30 days
+                    });
+
+                    if (model.RememberMe)
+                    {
+                        // Set authentication cookie
+                        Response.Cookies.Append("IsAuthenticated", "true", new CookieOptions
+                        {
+                            Expires = DateTimeOffset.UtcNow.AddDays(30) // Cookie expires in 30 days
+                        });
+                    }
 
                     return RedirectToAction("SearchCity", "Forecast");
                 }
@@ -79,6 +93,23 @@ namespace WeatherApp.Controllers
 
                     await Authenticate(model.UserName);
 
+                    var newUser = await _context.Users.FirstOrDefaultAsync(u => u.UserName == model.UserName);
+
+                    // Set authentication cookie
+                    Response.Cookies.Append("UserId", newUser.Id.ToString(), new CookieOptions
+                    {
+                        Expires = DateTimeOffset.UtcNow.AddDays(30) // Cookie expires in 30 days
+                    });
+
+                    if (model.RememberMe)
+                    {
+                        // Set authentication cookie
+                        Response.Cookies.Append("IsAuthenticated", "true", new CookieOptions
+                        {
+                            Expires = DateTimeOffset.UtcNow.AddDays(30) // Cookie expires in 30 days
+                        });
+                    }
+
                     return RedirectToAction("SearchCity", "Forecast");
                 }
                 else
@@ -105,6 +136,8 @@ namespace WeatherApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            Response.Cookies.Delete("IsAuthenticated");
+            Response.Cookies.Delete("UserId");
             return RedirectToAction("Login", "Account");
         }
 
@@ -177,10 +210,36 @@ namespace WeatherApp.Controllers
             }
         }
 
+        [HttpGet("GetNotifications/{userId:int}")]
+        public IActionResult GetNotifications(int userId)
+        {
+            var user = new User()
+            {
+                Id = userId
+            };
+
+            return View(user);
+        }
+
+        [HttpPost("GetNotifications/{userId:int}")]
+        public async Task<IActionResult> GetNotifications(int userId, string city, bool flag)
+        {
+            if (flag) await _accountService.EnableSubscriptionAsync(userId, city);
+            else await _accountService.DisableSubscriptionAsync(userId, city);
+
+            return RedirectToAction("SearchCity", "Forecast");
+        }
+
         [HttpGet]
-        public IActionResult GetNotifications()
+        public IActionResult ForgotPassword()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            return await _accountService.ResetPasswordAsync(email);
         }
     }
 }

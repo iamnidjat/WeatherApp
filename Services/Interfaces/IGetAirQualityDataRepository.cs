@@ -5,6 +5,6 @@ namespace WeatherApp.Services.Interfaces
 {
     public interface IGetAirQualityDataRepository
     {
-        AirQualityModel GetForecastData(AirQualityDataRequest request);
+        AirQualityModel GetAirQualityData(AirQualityDataRequest request);
     }
 }

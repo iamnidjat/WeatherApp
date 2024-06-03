@@ -7,5 +7,6 @@
         public int Humidity { get; set; }
         public float Temp_Min { get; set; }
         public float Temp_Max { get; set; }
+        public float Feels_Like { get; set; }
     }
 }

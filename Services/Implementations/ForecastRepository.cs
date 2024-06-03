@@ -22,7 +22,7 @@ public class ForecastRepository : IForecastRepository
         _logger = logger;
     }
 
-    public WeatherResponse GetForecast(string city, string system)
+    public WeatherResponse GetForecast(string city, string system = null)
     {
         string openWeatherApiKey = Constants.OPEN_WEATHER_APPID;
         string apiUrl = $"http://api.openweathermap.org/data/2.5/weather?q={city}&units={system}&APPID={openWeatherApiKey}";

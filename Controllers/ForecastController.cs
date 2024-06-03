@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Security.Claims;
+using WeatherApp.Config;
 using WeatherApp.Models;
 using WeatherApp.Models.OpenMeteoModels;
 using WeatherApp.Models.OpenWeatherMapModels;
@@ -8,53 +13,100 @@ using WeatherApp.ViewModels;
 
 namespace WeatherApp.Controllers
 {
-   // [Route("Forecast")]
-    public class ForecastController: Controller
+    public class ForecastController : Controller
     {
         private readonly IForecastRepository _forecastRepository;
         private readonly IPreciseForecastData _preciseForecastData;
+        private readonly IGetAirQualityDataRepository _getAirQualityDataRepository;
 
-        public ForecastController(IForecastRepository forecastAppRepo,
-            IPreciseForecastData preciseForecastData)
+        public ForecastController(IForecastRepository forecastAppRepo, 
+            IPreciseForecastData preciseForecastData, IGetAirQualityDataRepository getAirQualityDataRepository)
         {
             _forecastRepository = forecastAppRepo;
             _preciseForecastData = preciseForecastData;
+            _getAirQualityDataRepository = getAirQualityDataRepository;
         }
 
-        //[HttpGet("SearchCity")]
         [HttpGet]
-        public IActionResult SearchCity()
+        [Route("{controller=Forecast}/{action=SearchCity}")]
+        public async Task<IActionResult> SearchCity()
         {
+            if (Request.Cookies["IsAuthenticated"] == "true")
+            {
+                // Perform automatic login
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, User.Identity.Name)
+                };
+
+                ClaimsIdentity id = new(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            }
+
             var SearchCityModel = new SearchCity();
             var SystemModel = new WeatherApp.ViewModels.System();
-          //  var ForecastDataRequest = new ForecastDataRequest();
-            var cities = Request.Cookies["SearchedCities"]?.Split(',');
+            var ForecastDataRequest = new ForecastDataRequest(0, 0);
+            var AirQualityDataRequest = new AirQualityDataRequest(0, 0);
+            var searchedCities = new List<SearchedCities>();
+
+            var existingCitiesCookie = Request.Cookies["SearchedCities"];
+            if (!string.IsNullOrEmpty(existingCitiesCookie))
+            {
+                try
+                {
+                    searchedCities = JsonConvert.DeserializeObject<List<SearchedCities>>(existingCitiesCookie);
+                }
+                catch (JsonException ex)
+                {
+                    // Log the error (ex) if necessary
+                    // Initialize an empty list if deserialization fails
+                    searchedCities = new List<SearchedCities>();
+                }
+            }
 
             var compositeModel = new CompositeViewModel
             {
                 SearchCityModel = SearchCityModel,
                 SystemModel = SystemModel,
-               // ForecastDataRequest = ForecastDataRequest,
-                SearchedCities = cities != null ? cities?.ToList() : new List<string>(),
+                ForecastDataRequest = ForecastDataRequest,
+                AirQualityDataRequest = AirQualityDataRequest,
+                SearchedCities = searchedCities,
             };
+
+            ViewData["LocationIQApiKey"] = Constants.LOCATION_IQ_KEY;
 
             return View(compositeModel);
         }
 
-        //[HttpPost("SearchCity")]
         [HttpPost]
         public async Task<IActionResult> SearchCity(CompositeViewModel model)
         {
-            var existingCities = Request.Cookies["SearchedCities"];
+            var existingCitiesCookie = Request.Cookies["SearchedCities"];
+            var searchedCities = new List<SearchedCities>();
 
-            // Append the new city to existing cities (if any)
-            var newCities = existingCities != null ? $"{existingCities},{model.SearchCityModel.CityName}" : model.SearchCityModel.CityName;
+            if (!string.IsNullOrEmpty(existingCitiesCookie))
+            {
+                searchedCities = JsonConvert.DeserializeObject<List<SearchedCities>>(existingCitiesCookie);
+            }
 
-            // Set the updated cities in the cookie
-            Response.Cookies.Append("SearchedCities", newCities, new CookieOptions
+            // Add the new city to the list
+            var newCity = new SearchedCities
+            {
+                Name = model.SearchCityModel.CityName,
+                Date = DateTime.UtcNow,
+                System = model.SystemModel.Units,
+            };
+
+            searchedCities.Add(newCity);
+
+            // Serialize the updated list back to a cookie
+            var newCitiesCookie = JsonConvert.SerializeObject(searchedCities);
+            Response.Cookies.Append("SearchedCities", newCitiesCookie, new CookieOptions
             {
                 Expires = DateTimeOffset.UtcNow.AddYears(1) // Cookie expires in 1 year
             });
+
             // If the model is valid, consume the Weather API to bring the data of the city
             if (ModelState.IsValid)
             {
@@ -64,7 +116,6 @@ namespace WeatherApp.Controllers
             return View(model);
         }
 
-        //  [HttpGet("City")]
         [HttpGet]
         public IActionResult City(string city, string system)
         {
@@ -81,9 +132,16 @@ namespace WeatherApp.Controllers
                     viewModel.Humidity = weatherResponse.Main.Humidity;
                     viewModel.Pressure = weatherResponse.Main.Pressure;
                     viewModel.Temp = weatherResponse.Main.Temp;
+                    viewModel.MinTemp = weatherResponse.Main.Temp_Min;
+                    viewModel.MaxTemp = weatherResponse.Main.Temp_Max;
+                    viewModel.FeelsLike = weatherResponse.Main.Feels_Like;
                     viewModel.Weather = weatherResponse.Weather[0].Main;
+                    viewModel.WeatherDescription = weatherResponse.Weather[0].Description;
                     viewModel.Wind = weatherResponse.Wind.Speed;
                     viewModel.WeatherIcon = $"http://openweathermap.org/img/w/{weatherResponse.Weather[0].Icon}.png";
+                    viewModel.Visibility = weatherResponse.Visibility;
+                    viewModel.Latitude = weatherResponse.Coord.Lat;
+                    viewModel.Longitude = weatherResponse.Coord.Lon;
                 }
             }
             catch (CityNotFoundException ex)
@@ -106,14 +164,6 @@ namespace WeatherApp.Controllers
             return View(compositeSearchModel);
         }
 
-        //[HttpPost]
-        //public IActionResult AdditionalData(string latlondata)
-        //{
-        //    var data = latlondata.Split(',');
-        //    return RedirectToAction("AdditionalData", "SunriseSunset", new { latitude = data[0], longitude = data[1] });
-        //}
-
-        //[HttpPost("RemoveCity")]
         [HttpPost]
         public IActionResult RemoveCity(string city)
         {
@@ -122,17 +172,10 @@ namespace WeatherApp.Controllers
             if (existingCities != null)
             {
                 // Split the existing cities into an array
-                var cities = existingCities.Split(',');
+                var cities = existingCities.Split(',').ToList();
 
-                // Find and remove the specified city from the array
-                for (int i = 0; i < cities.Length; i++)
-                {
-                    if (cities[i] == city)
-                    {
-                        cities[i] = null; // Remove the city
-                        break; // Stop searching
-                    }
-                }
+                // Remove the specified city from the list
+                cities.Remove(city);
 
                 // Join the remaining cities back into a string
                 var updatedCities = string.Join(",", cities);
@@ -148,30 +191,51 @@ namespace WeatherApp.Controllers
             return Ok(new { success = true });
         }
 
+
         [HttpGet]
         public IActionResult FullWeatherData(ForecastDataRequest forecastDataRequest)
         {
             PreciseForecastData preciseForecastData = _preciseForecastData.GetForecastData(forecastDataRequest);
-            FullWeatherData viewModel = new FullWeatherData();
+            var viewModel = new FullWeatherData
+            {
+                Times = new List<string>(),
+                Temperatures = new List<double>()
+            };
 
-            if (preciseForecastData != null && forecastDataRequest.HourlyData != string.Empty)
+            if (preciseForecastData != null)
             {
-                viewModel.Times?.Add(preciseForecastData.hourly_units.temperature_2m);
-            }
-            else if (preciseForecastData != null && forecastDataRequest.DailyData != string.Empty)
-            {
-                viewModel.Times?.Add(preciseForecastData.daily_units.temperature_2m_max);
+                if (!string.IsNullOrEmpty(forecastDataRequest.HourlyData))
+                {
+                    viewModel.Times.AddRange(preciseForecastData.hourly.time);
+                    viewModel.Temperatures.AddRange(preciseForecastData.hourly.temperature_2m);
+                }
+                else if (!string.IsNullOrEmpty(forecastDataRequest.DailyData))
+                {
+                    viewModel.Times.AddRange(preciseForecastData.daily.time);
+                    viewModel.Temperatures.AddRange(preciseForecastData.daily.temperature_2m_max);
+                }
             }
 
             return View(viewModel);
         }
 
-        [HttpPost]
-        public IActionResult SaveLocation(string latlondata)
+        [HttpGet]
+        public IActionResult AirQuality(AirQualityDataRequest airQualityDataRequest)
         {
-            // Process latlondata
-            // You can save it to a database, perform calculations, etc.
-            return Ok(); // Or return any other appropriate response
+            AirQualityModel airQualityModel = _getAirQualityDataRepository.GetAirQualityData(airQualityDataRequest);
+            var viewModel = new AirQualityDTO
+            {
+                Times = new List<string>(),
+                Temperatures = new List<double?>()
+            };
+
+            if (airQualityModel != null)
+            {
+                viewModel.Times.AddRange(airQualityModel.hourly.time);
+                viewModel.Temperatures.AddRange(airQualityModel.hourly.pm10);              
+            }
+
+            return View(viewModel);
         }
     }
 }

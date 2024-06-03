@@ -11,9 +11,12 @@
 </head>
 <body>
     <header>
+        @{
+            var userId = Context.Request.Cookies["UserId"];
+        }
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WeatherApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="" asp-action="">WeatherApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,6 +44,42 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Sign up</a>
                             </li>
                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="GetNotifications" asp-route-userId="@userId">Subscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FavouriteLocations" asp-action="Index" asp-route-userId="@userId">Favourite Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FavouriteLocations" asp-action="AddFLocation" asp-route-userId="@userId">Add Favourite Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <form id="lang-form-en" asp-controller="Language" asp-action="SetLanguage" method="post" class="d-inline">
+                                <input type="hidden" name="culture" value="en" />
+                                <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                                <a href="javascript:void(0);" class="nav-link" onclick="document.getElementById('lang-form-en').submit();">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/555/555417.png" alt="English" style="width: 24px; height: 24px;" />
+                                </a>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form id="lang-form-ru" asp-controller="Language" asp-action="SetLanguage" method="post" class="d-inline">
+                                <input type="hidden" name="culture" value="ru" />
+                                <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                                <a href="javascript:void(0);" class="nav-link" onclick="document.getElementById('lang-form-ru').submit();">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/330/330437.png" alt="Russian" style="width: 24px; height: 24px;" />
+                                </a>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form id="lang-form-az" asp-controller="Language" asp-action="SetLanguage" method="post" class="d-inline">
+                                <input type="hidden" name="culture" value="az" />
+                                <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                                <a href="javascript:void(0);" class="nav-link" onclick="document.getElementById('lang-form-az').submit();">
+                                    <img src="https://cdn-icons-png.flaticon.com/128/330/330544.png" alt="Azerbaijani" style="width: 24px; height: 24px;" />
+                                </a>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +98,6 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

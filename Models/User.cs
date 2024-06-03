@@ -18,6 +18,10 @@ namespace WeatherApp.Models
         [Required]
         public string? Email { get; set; }
 
+        public bool IsSubscribed { get; set; }
+
+        public string? SubscribedCity { get; set; }
+
         // Navigation property
         public ICollection<FavouriteLocation>? FavouriteLocations { get; set; }
     }

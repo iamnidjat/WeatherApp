@@ -1,13 +1,14 @@
 ﻿@using WeatherApp.Services.Implementations;
-@using WeatherApp.ViewModels
 @model CompositeViewModel
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer
 
 @if (TempData["SuccessMessage"] != null)
 {
     <div id="successMessage" class="alert alert-success" role="alert">
         @TempData["SuccessMessage"]
     </div>
-}
+}                                               
 else if (TempData["ErrorMessage"] != null)
 {
     <div id="errorMessage" class="alert alert-success" role="alert">
@@ -18,16 +19,13 @@ else if (TempData["ErrorMessage"] != null)
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        <h3>User: @User.Identity.Name</h3>
+        <h3>@Localizer["User"]: @User.Identity.Name</h3>
     }
     else
     {
-        <h3>Guest</h3>
+        <h3>@Localizer["Guest"]</h3>
     }
 </div>
-
-<p id="demo">Click the button to get your position:</p>
-<button onclick="getLocation()">Get your Location</button>
 
 <div class="container">
     <form method="post">
@@ -35,40 +33,61 @@ else if (TempData["ErrorMessage"] != null)
             <div class="form-group col-md-offset-3 col-md-5">
                 <h2>Search the weather forecast in a city</h2>
                 <label asp-for="@Model.SearchCityModel.CityName" style="font-family: Arial"></label>
-                <input asp-for="@Model.SearchCityModel.CityName" class="form-control" />
+                <input asp-for="@Model.SearchCityModel.CityName" id="cityNameInput" class="form-control" />
                 <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
                 <div class="systems">   
                     <div>
-                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { @checked = "checked"} )
-                        <label for="metric">Metric</label>
+                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { id = "metricRadio" } )
+                        <label asp-for="@Model.SystemModel.Units">Metric</label>
+                        <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
                     </div>
                     <div>
-                        @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial")
-                        <label for="imperial">Imperial</label>
+                        @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial", new { id = "imperialRadio" })
+                        <label asp-for="@Model.SystemModel.Units">Imperial</label>
+                        <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="sub-container">
-            <div class="form-group col-md-offset-3 col-md-5">
-                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary">Search</button>
-                <button asp-controller="Forecast" asp-action="AdditionalData" class="btn btn-primary">Search2</button>
+            <div class="form-group col-md-offset-3 col-md-5">               
+                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary" disabled>Search</button>
+                <button type="button" class="btn btn-primary" onclick="updateHref()">Get the sunrise/sunset data</button>
+                <a id="search2Link" style="display: none;"></a>
+                <button type="button" class="btn btn-primary" onclick="updateHref2()">Get the full weather data</button>
+                <a id="search3Link" style="display: none;"></a>
+                <button type="button" class="btn btn-primary" onclick="updateHref4()">Get the full weather data2</button>
+                <a id="search5Link" style="display: none;"></a>
+                <button type="button" class="btn btn-primary" onclick="updateHref3()">Get the air quality data</button>
+                <a id="search4Link" style="display: none;"></a>
             </div>
         </div>
     </form>
-    
+
+    <a href="@Url.Action("Index", "AirQuality")">Go to Air Quality</a>
+    <a href="@Url.Action("Index", "SunriseSunset")">Go to Sunrise/Sunset</a>
+   
     <h2>Searched Cities:</h2>
-    <ul>
-        @foreach (var city in Model.SearchedCities)
-        {
-            <li>
-                <a href="@Url.Action("City", "Forecast", new { city = city, system = Model.SystemModel.Units })">@city</a>
-                <button class="removeCityButton" data-city="@city">X</button>
-            </li>
-        }
-    </ul>
-@*
-    <a href="@Url.Action("FullWeatherData", "Forecast", new { forecastDataRequest = new ForecastDataRequest { Latitude = 40.3777M, Longitude = 49.892M } })">Get the full weather data in @Model.SearchCityModel.CityName </a>*@
+    @if (Model.SearchedCities != null && Model.SearchedCities.Any())
+    {
+        <ul>
+            @foreach (var city in Model.SearchedCities)
+            {
+                <li>                    
+                    @if (!string.IsNullOrEmpty(city.Name))
+                    {
+                        <a href="@Url.Action("City", "Forecast", new { city = city.Name, system = city.System })">@city.Name</a>
+                        <span>@city.Date?.ToString("yyyy-MM-dd HH:mm")</span>
+                        <button class="removeCityButton" data-city="@city.Name">X</button>
+                    }
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No cities have been searched yet.</p>
+    }
 
 </div>
 
@@ -77,50 +96,139 @@ else if (TempData["ErrorMessage"] != null)
     <script src="~/js/city-management.js"></script>
 
     <script type="text/javascript">
-        function getLocation() {
+
+        function updateHref() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var link = document.getElementById("search2Link");
+                    link.href = '@Url.Action("AdditionalData", "SunriseSunset")' + '?latitude=' + latitude + '&longitude=' + longitude;
+                    link.click();
+                }, showError);
             } else {
                 document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
             }
         }
 
-        function showPosition(position) {
-            var latlondata = position.coords.latitude + "," + position.coords.longitude;
-            sendLocationData(latlondata);
-            var latlon = "Your Latitude Position is: " + position.coords.latitude + ", Your Longitude Position is: " + position.coords.longitude;
-            alert(latlon);
-        }
-          
-        function showError(error) {
-            if (error.code == 1) {
-                document.getElementById("demo").innerHTML = "User denied the request for Geolocation.";
-            } else if (err.code == 2) {
-                document.getElementById("demo").innerHTML = "Location information is unavailable.";
-            } else if (err.code == 3) {
-                document.getElementById("demo").innerHTML = "The request to get user location timed out.";
+        function updateHref2() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var link = document.getElementById("search3Link");
+                    link.href = '@Url.Action("FullWeatherData", "Forecast")' + '?latitude=' + latitude + '&longitude=' + longitude + '&dailyData=temperature_2m_max';
+                    link.click();
+                }, showError);
             } else {
-                document.getElementById("demo").innerHTML = "An unknown error occurred.";
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
             }
         }
 
-        function sendLocationData(latlondata) {
-            $.ajax({
-                type: "POST",
-                url: "/SunriseSunset/AdditionalData",
-                data: { latlondata: latlondata },
-                success: function () {
-                    // Handle success if needed
-                },
-                error: function () {
-                    // Handle error if needed
-                }
-            });
+        function updateHref4() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var link = document.getElementById("search5Link");
+                    link.href = '@Url.Action("FullWeatherData", "Forecast")' + '?latitude=' + latitude + '&longitude=' + longitude + '&hourlyData=temperature_2m';
+                    link.click();
+                }, showError);
+            } else {
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+            }
         }
+
+        function updateHref3() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var link = document.getElementById("search4Link");
+                    link.href = '@Url.Action("AirQuality", "Forecast")' + '?latitude=' + latitude + '&longitude=' + longitude;
+                    link.click();
+                }, showError);
+            } else {
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        const locationIQApiKey = '@ViewData["LocationIQApiKey"]';
+
+        function showError(error) {
+            let errorMessage = '';
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    errorMessage = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    errorMessage = "An unknown error occurred.";
+                    break;
+            }
+            console.error(errorMessage);
+            document.getElementById("cityNameInput").value = "Unable to fetch location";
+        }
+
+        function fetchCityName(latitude, longitude) {
+            fetch(`https://us1.locationiq.com/v1/reverse.php?key=${locationIQApiKey}&lat=${latitude}&lon=${longitude}&format=json`)
+                .then(response => response.json())
+                .then(data => {
+                    const cityName = data.address.city || data.address.town || data.address.village || "Unknown location";
+                    document.getElementById("cityNameInput").value = cityName;
+                })
+                .catch(error => {
+                    console.error('Error fetching city name:', error);
+                    document.getElementById("cityNameInput").value = "Unable to fetch city name";
+                });
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    fetchCityName(latitude, longitude);
+                }, showError);
+            } else {
+                console.error("Geolocation is not supported by this browser.");
+                document.getElementById("cityNameInput").value = "Geolocation not supported";
+            }
+        }
+
+        // Call getLocation on page load
+        window.onload = getLocation;
 
         setTimeout(function () {
             document.getElementById('successMessage').classList.add('hidden');
             document.getElementById('errorMessage').classList.add('hidden');
         }, 10000); // 10 seconds
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchButton = document.getElementById('searchButton');
+            var metricRadio = document.getElementById('metricRadio');
+            var imperialRadio = document.getElementById('imperialRadio');
+
+            function updateSearchButtonState() {
+                if (metricRadio.checked || imperialRadio.checked) {
+                    searchButton.disabled = false;
+                    alert("sex")
+                } else {
+                    searchButton.disabled = true;
+                    alert("porno")
+                }
+            }
+
+            metricRadio.addEventListener('change', updateSearchButtonState);
+            imperialRadio.addEventListener('change', updateSearchButtonState);
+
+            // Initialize button state
+            updateSearchButtonState();
+        });
     </script>
 }

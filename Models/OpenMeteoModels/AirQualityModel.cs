@@ -3,7 +3,7 @@
     public class Hourly
     {
         public List<string> time { get; set; }
-        public List<double> pm10 { get; set; }
+        public List<double?> pm10 { get; set; }
     }
 
     public class HourlyUnits

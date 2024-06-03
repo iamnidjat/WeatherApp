@@ -2,6 +2,7 @@
 using WeatherApp.Models;
 using WeatherApp.Models.OpenMeteoModels;
 using WeatherApp.Services.Implementations;
+using static WeatherApp.Services.Implementations.GetAdditionalDataRepository;
 
 namespace WeatherApp.ViewModels
 {
@@ -11,6 +12,12 @@ namespace WeatherApp.ViewModels
 
         public System? SystemModel { get; set; }
 
-        public List<string>? SearchedCities { get; set; }
+        public ForecastDataRequest? ForecastDataRequest { get; set; }
+
+        public AirQualityDataRequest? AirQualityDataRequest { get; set; }
+
+        public SunriseSunsetModel? SunriseSunsetModel { get; set; }
+
+        public List<SearchedCities>? SearchedCities { get; set; }
     }
 }

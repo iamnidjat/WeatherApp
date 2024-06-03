@@ -14,6 +14,9 @@ namespace WeatherApp.ViewModels
         public string? ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Email is not specified")]
+        [EmailAddress]
         public string? Email { get; set; }
+
+        public bool RememberMe { get; set; }
     }
 }

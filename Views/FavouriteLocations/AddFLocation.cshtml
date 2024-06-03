@@ -1,0 +1,13 @@
+﻿@model FavouriteLocation
+
+<h1>Add Favourite Location</h1>
+<form method="post" action="/FavouriteLocations/AddFLocation">
+    <div class="form-group">
+        <label for="location-name">Location Name:</label>
+        <input type="text" name="name" required>
+        <input type="hidden" name="userId" value="@Model.UserId">
+    </div>
+    <button type="submit">Create</button>
+</form>
+
+

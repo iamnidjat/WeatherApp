@@ -1,0 +1,133 @@
+﻿@using WeatherApp.Services.Implementations;
+@model CompositeViewModel
+
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h3>User: @User.Identity.Name</h3>
+    }
+    else
+    {
+        <h3>Guest</h3>
+    }
+</div>
+
+<div class="container">
+    <form method="post">
+        <div class="sub-container">
+            <div class="form-group col-md-offset-3 col-md-5">
+                <h2>Search the weather forecast in a city</h2>
+                <label asp-for="@Model.SearchCityModel.CityName" style="font-family: Arial"></label>
+                <input asp-for="@Model.SearchCityModel.CityName" id="cityNameInput" class="form-control" />
+                <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
+                <label asp-for="@Model.AirQualityDataRequest.PastDays" style=" font-family: Arial"></label>
+                <input asp-for="@Model.AirQualityDataRequest.PastDays" type="number" min="0" max="7" value="0"/>
+                <label asp-for="@Model.AirQualityDataRequest.ForecastDays" style="font-family: Arial"></label>
+                <input asp-for="@Model.AirQualityDataRequest.ForecastDays" type="number" min="0" max="92" value="0"/>
+                <div>
+                    <label for="startDate">Start Date</label>
+                    @Html.TextBoxFor(m => m.AirQualityDataRequest.StartDate, "{0:yyyy-MM-dd}", new { @type = "date" })
+                </div>
+                <div>
+                    <label for="endDate">End Date</label>
+                    @Html.TextBoxFor(m => m.AirQualityDataRequest.EndDate, "{0:yyyy-MM-dd}", new { @type = "date" })
+                </div>
+                <div>
+                    <label for="startHour">Start Hour</label>
+                    @Html.TextBoxFor(m => m.AirQualityDataRequest.StartHour, "{0:yyyy-MM-ddTHH:mm}", new { @type = "datetime-local" })
+                </div>
+                <div>
+                    <label for="endHour">End Hour</label>
+                    @Html.TextBoxFor(m => m.AirQualityDataRequest.EndHour, "{0:yyyy-MM-ddTHH:mm}", new { @type = "datetime-local" })
+                </div>
+
+            </div>
+        </div>
+        <div class="sub-container">
+            <div class="form-group col-md-offset-3 col-md-5">
+                <button asp-controller="AirQuality" asp-action="Index" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    
+    <h2>Searched Cities:</h2>
+    @if (Model.SearchedCities != null && Model.SearchedCities.Any())
+    {
+        <ul>
+            @foreach (var city in Model.SearchedCities)
+            {    
+                <li>
+                    @if (!string.IsNullOrEmpty(city.Name))
+                    {
+                        <a href="@Url.Action("City", "AirQuality", new { latitude = city.Latitude, longitude = city.Longitude })">@city.Name</a>
+                        <span>@city.Date?.ToString("yyyy-MM-dd HH:mm")</span>
+                        <button class="removeCityButton" data-city="@city.Name">X</button>
+                    }
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No cities have been searched yet.</p>
+    }
+
+</div>
+
+@section Scripts
+{
+    <script src="~/js/city-management-aq.js"></script>
+
+    <script type="text/javascript">
+        const locationIQApiKey = '@ViewData["LocationIQApiKey"]';
+
+        function showError(error) {
+            let errorMessage = '';
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    errorMessage = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    errorMessage = "An unknown error occurred.";
+                    break;
+            }
+            console.error(errorMessage);
+            document.getElementById("cityNameInput").value = "Unable to fetch location";
+        }
+
+        function fetchCityName(latitude, longitude) {
+            fetch(`https://us1.locationiq.com/v1/reverse.php?key=${locationIQApiKey}&lat=${latitude}&lon=${longitude}&format=json`)
+                .then(response => response.json())
+                .then(data => {
+                    const cityName = data.address.city || data.address.town || data.address.village || "Unknown location";
+                    document.getElementById("cityNameInput").value = cityName;
+                })
+                .catch(error => {
+                    console.error('Error fetching city name:', error);
+                    document.getElementById("cityNameInput").value = "Unable to fetch city name";
+                });
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    fetchCityName(latitude, longitude);
+                }, showError);
+            } else {
+                console.error("Geolocation is not supported by this browser.");
+                document.getElementById("cityNameInput").value = "Geolocation not supported";
+            }
+        }
+
+        // Call getLocation on page load
+        window.onload = getLocation;
+    </script>
+}

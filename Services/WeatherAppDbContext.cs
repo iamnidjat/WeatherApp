@@ -3,7 +3,7 @@ using WeatherApp.Models;
 
 namespace WeatherApp.Services
 {
-    public class WeatherAppDbContext : DbContext
+    public class WeatherAppDbContext: DbContext
     {
         public WeatherAppDbContext(DbContextOptions<WeatherAppDbContext> options) : base(options)
         {

@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using RestSharp;
-using WeatherApp.Models.SunriseSunsetModels;
 using WeatherApp.Models.OpenMeteoModels;
 using WeatherApp.Services.Interfaces;
+using WeatherApp.Models;
+using System.Globalization;
 
 namespace WeatherApp.Services.Implementations
 {
-    public class GetAirQualityDataRepository: IGetAirQualityDataRepository
+    public class GetAirQualityDataRepository : IGetAirQualityDataRepository
     {
         private readonly ILogger<GetAirQualityDataRepository> _logger;
 
@@ -16,14 +17,16 @@ namespace WeatherApp.Services.Implementations
             _logger = logger;
         }
 
-        public AirQualityModel GetForecastData(AirQualityDataRequest request)
+        public AirQualityModel GetAirQualityData(AirQualityDataRequest request)
         {
-            string apiUrl = $"https://air-quality-api.open-meteo.com/v1/air-quality?latitude={request.Latitude}&longitude={request.Longitude}";
+            // Correctly format latitude and longitude to use periods as decimal separators
+            var latitude = request.Latitude.ToString(CultureInfo.InvariantCulture);
+            var longitude = request.Longitude.ToString(CultureInfo.InvariantCulture);
 
-            apiUrl += AppendParameter("hourly", request.HourlyData);
-            apiUrl += AppendParameter("timezone", request.Timezone);
-            apiUrl += AppendParameter("past_days", request.PastDays);
-            apiUrl += AppendParameter("forecast_days", request.ForecastDays);
+            string apiUrl = $"https://air-quality-api.open-meteo.com/v1/air-quality?latitude={latitude}&longitude={longitude}&hourly=pm10";
+
+            apiUrl += AppendParameter("past_days", request.PastDays.ToString());
+            apiUrl += AppendParameter("forecast_days", request.ForecastDays.ToString());
             apiUrl += AppendParameter("start_date", request.StartDate);
             apiUrl += AppendParameter("end_date", request.EndDate);
             apiUrl += AppendParameter("start_hour", request.StartHour);
@@ -39,8 +42,17 @@ namespace WeatherApp.Services.Implementations
             }
             else
             {
-                _logger.LogError($"Failed to retrieve air quality data. Status code: {response.StatusCode}, Message: {response.ErrorMessage}");
-                throw null;
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    throw new CityNotFoundException($"The city does not exist!");
+                }
+                else
+                {
+                    _logger.LogError($"Failed to retrieve air quality data. Status code: {response.StatusCode}, Message: {response.ErrorMessage}");
+                    // Throw another exception or handle the error as needed
+                    throw new Exception("Failed to retrieve air quality data.");
+                }
+                
             }
         }
 
@@ -50,9 +62,8 @@ namespace WeatherApp.Services.Implementations
         }
     }
 
-    public record AirQualityDataRequest(decimal Latitude, decimal Longitude,
-        string? HourlyData, string? Timezone, string? PastDays, 
-        string? ForecastDays, string? StartDate, string? EndDate, 
-        string? StartHour, string? EndHour);
+    public record AirQualityDataRequest(float Latitude, float Longitude,
+        int? PastDays = null, int? ForecastDays = null, string? StartDate = null, 
+        string? EndDate = null, string? StartHour = null, string? EndHour = null);
 }
 

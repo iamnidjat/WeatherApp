@@ -1,5 +1,4 @@
-﻿@using WeatherApp.ViewModels
-@model CompositeSearchModel
+﻿@model CompositeSearchModel
 
 <div class="container">
     @if (Model.City != null)
@@ -18,12 +17,28 @@
                 <span>@Model.City.Temp °C</span>
                 <br />
 
+                <label asp-for="@Model.City.MinTemp"></label>
+                <span>@Model.City.MinTemp °C</span>
+                <br />
+
+                <label asp-for="@Model.City.MaxTemp"></label>
+                <span>@Model.City.MaxTemp °C</span>
+                <br />
+
+                <label asp-for="@Model.City.FeelsLike"></label>
+                <span>@Model.City.FeelsLike °C</span>
+                <br />
+
                 <label asp-for="@Model.City.Humidity"></label>
                 <span>@Model.City.Humidity %</span>
                 <br />
 
                 <label asp-for="@Model.City.Pressure"></label>
                 <span>@Model.City.Pressure Hpa</span>
+                <br />
+
+                <label asp-for="@Model.City.Visibility"></label>
+                <span>@Model.City.Visibility m</span>
                 <br />
 
                 <label asp-for="@Model.City.Wind"></label>
@@ -34,8 +49,28 @@
                 <span>@Model.City.Weather</span>
                 <br />
 
+                <label asp-for="@Model.City.WeatherDescription"></label>
+                <span>@Model.City.WeatherDescription</span>
+                <br />
+
                 <label asp-for="@Model.City.WeatherIcon"></label>
                 <span><img src="@Model.City.WeatherIcon" title="Weather Icon" /></span>
+            </div>
+
+        </div>
+
+        <div class="sub-container">
+
+            <div class="form-group col-md-offset-3 col-md-5">
+
+                <a href="@Url.Action("FullWeatherData", "Forecast", new { latitude = Model.City.Latitude, longitude = Model.City.Longitude, dailyData = "temperature_2m_max" })" class="btn btn-primary">
+                    Get the full weather data
+                </a>
+
+                <form method="get">
+                    <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-success">Return</button>
+                </form>
+
             </div>
 
         </div>
@@ -49,16 +84,5 @@
     </div>
     }
 
-    <div class="sub-container">
-
-        <div class="form-group col-md-offset-3 col-md-5">
-
-            <form method="get">
-                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-success">Return</button>
-            </form>
-
-        </div>
-
-    </div>
-
+   
 </div>

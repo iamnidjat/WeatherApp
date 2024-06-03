@@ -1,6 +1,11 @@
-﻿public class ApplicationDatas // ! change it 
+﻿public class ApplicationDatas
 {
-    public static string FirstMail { get; } = "gurbanli.nidjat001@gmail.com";
+    public string FirstMail { get; private set; }
+    public string Password { get; private set; }
 
-    public static string Password { get; } = "cdnc egfg bvnc lvfj"; 
+    public ApplicationDatas(IConfiguration configuration)
+    {
+        FirstMail = configuration["ApplicationDatas:FirstMail"]!;
+        Password = configuration["ApplicationDatas:Password"]!;
+    }
 }

@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using RestSharp;
-using WeatherApp.Models.OpenWeatherMapModels;
-using WeatherApp.Models.SunriseSunsetModels;
 using WeatherApp.Models.OpenMeteoModels;
 using WeatherApp.Services.Interfaces;
+using System.Globalization;
 
 namespace WeatherApp.Services.Implementations
 {
@@ -19,18 +18,22 @@ namespace WeatherApp.Services.Implementations
 
         public PreciseForecastData GetForecastData(ForecastDataRequest request)
         {
-            string apiUrl = $"https://api.open-meteo.com/v1/forecast?latitude={request.Latitude}&longitude={request.Longitude}";
+            // Correctly format latitude and longitude to use periods as decimal separators
+            var latitude = request.Latitude.ToString(CultureInfo.InvariantCulture);
+            var longitude = request.Longitude.ToString(CultureInfo.InvariantCulture);
+
+            string apiUrl = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}";
 
             apiUrl += AppendParameter("hourly", request.HourlyData);
             apiUrl += AppendParameter("daily", request.DailyData);
-            apiUrl += AppendParameter("temperature_unit", request.TemperatureUnit);
-            apiUrl += AppendParameter("timezone", request.Timezone);
-            apiUrl += AppendParameter("past_days", request.PastDays);
-            apiUrl += AppendParameter("forecast_days", request.ForecastDays);
-            apiUrl += AppendParameter("start_date", request.StartDate);
-            apiUrl += AppendParameter("end_date", request.EndDate);
-            apiUrl += AppendParameter("start_hour", request.StartHour);
-            apiUrl += AppendParameter("end_hour", request.EndHour);
+            //apiUrl += AppendParameter("temperature_unit", request.TemperatureUnit);
+            //apiUrl += AppendParameter("timezone", request.Timezone);
+            //apiUrl += AppendParameter("past_days", request.PastDays);
+            //apiUrl += AppendParameter("forecast_days", request.ForecastDays);
+            //apiUrl += AppendParameter("start_date", request.StartDate);
+            //apiUrl += AppendParameter("end_date", request.EndDate);
+            //apiUrl += AppendParameter("start_hour", request.StartHour);
+            //apiUrl += AppendParameter("end_hour", request.EndHour);
 
             var client = new RestClient(apiUrl);
             var response = client.Execute(new RestRequest(Method.GET));
@@ -53,11 +56,18 @@ namespace WeatherApp.Services.Implementations
         }
     }
 
-    public record ForecastDataRequest(decimal Latitude, decimal Longitude,
-        string? HourlyData, string? DailyData, string? TemperatureUnit,
-        string? Timezone, string? PastDays, string? ForecastDays,
-        string? StartDate, string? EndDate, string? StartHour, string? EndHour)
-    {
-    }
+    public record ForecastDataRequest(
+        decimal Latitude,
+        decimal Longitude,
+        string? HourlyData = null,
+        string? DailyData = null,
+        string? TemperatureUnit = null,
+        string? Timezone = null,
+        string? PastDays = null,
+        string? ForecastDays = null,
+        string? StartDate = null,
+        string? EndDate = null,
+        string? StartHour = null,
+        string? EndHour = null);
 }
 

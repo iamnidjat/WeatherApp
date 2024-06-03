@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model User
+
+<h2>Subscription</h2>
+
+<!-- Section 1: Enabled Button -->
+<h3>Enable Subscription</h3>
+<form asp-action="GetNotifications" method="post">
+    <div class="form-group">
+        <label for="city">Enter city name:</label>
+        <input type="text" name="city" class="form-control" required />
+    </div>
+    <input type="hidden" name="flag" value="true" />
+    <input type="hidden" name="userId" value="@Model.Id" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<hr />
+
+<!-- Section 2: Disabled Button -->
+<h3>Disable Subscription</h3>
+<form asp-action="GetNotifications" method="post">
+    <div class="form-group">
+        <label for="city">Enter city name:</label>
+        <input type="text" name="city" class="form-control" required />
+    </div>
+    <input type="hidden" name="flag" value="false" />
+    <input type="hidden" name="userId" value="@Model.Id" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+

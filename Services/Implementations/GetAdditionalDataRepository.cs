@@ -3,10 +3,11 @@ using Newtonsoft.Json;
 using RestSharp;
 using WeatherApp.Models.SunriseSunsetModels;
 using WeatherApp.Services.Interfaces;
+using System.Globalization;
 
 namespace WeatherApp.Services.Implementations
 {
-    public class GetAdditionalDataRepository: IGetAdditionalDataRepository
+    public class GetAdditionalDataRepository : IGetAdditionalDataRepository
     {
         private readonly ILogger<GetAdditionalDataRepository> _logger;
 
@@ -15,18 +16,16 @@ namespace WeatherApp.Services.Implementations
             _logger = logger;
         }
 
-        public Root GetAdditionalData(decimal lat, decimal lng, string timezone = null, string date = null, string startDate = null, string endDate = null)
+        public Root GetAdditionalData(SunriseSunsetModel sunriseSunsetModel)
         {
-            string apiUrl = $"https://api.sunrisesunset.io/json?lat={lat}&lng={lng}";
+            // Correctly format latitude and longitude to use periods as decimal separators
+            var latitude = sunriseSunsetModel.lat.ToString(CultureInfo.InvariantCulture);
+            var longitude = sunriseSunsetModel.lng.ToString(CultureInfo.InvariantCulture);
 
-            if (!string.IsNullOrEmpty(timezone))
-                apiUrl += $"&timezone={timezone}";
-            if (!string.IsNullOrEmpty(date))
-                apiUrl += $"&date={date}";
-            if (!string.IsNullOrEmpty(startDate))
-                apiUrl += $"&date_start={startDate}";
-            if (!string.IsNullOrEmpty(endDate))
-                apiUrl += $"&date_end={endDate}";
+            string apiUrl = $"https://api.sunrisesunset.io/json?lat={latitude}&lng={longitude}";
+
+            if (!string.IsNullOrEmpty(sunriseSunsetModel.date))
+                apiUrl += $"&date={sunriseSunsetModel.date}";
 
             var client = new RestClient(apiUrl);
             var request = new RestRequest(Method.GET);
@@ -43,6 +42,8 @@ namespace WeatherApp.Services.Implementations
                 throw null;
             }
         }
+
+        public record SunriseSunsetModel(float lat, float lng, string date = null);
     }
 }
 

@@ -4,6 +4,6 @@ namespace WeatherApp.Services.Interfaces
 {
     public interface IForecastRepository
     {
-        WeatherResponse GetForecast(string city, string system);
+        WeatherResponse GetForecast(string city, string system = null);
     }
 }

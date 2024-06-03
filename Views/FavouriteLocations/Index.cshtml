@@ -1,0 +1,28 @@
+﻿@model IEnumerable<FavouriteLocation>
+
+@if (Model == null)
+{
+    <h1>Incorrect id!</h1>
+}
+else
+{
+    <h1>Favourite Locations</h1>
+    <ul>
+        @foreach (var location in Model)
+        {
+            <li>
+                <a href="@Url.Action("City", "Forecast", new {city = @location.Name, system = "metric"})" class="location-name" data-id="@location.Id">@location.Name</a>
+                <input type="text" class="edit-name-input" data-id="@location.Id" style="display: none;" />
+                <button class="remove-btn" data-id="@location.Id">X</button>
+                <button class="edit-btn" data-id="@location.Id">Update</button>
+                <button class="save-btn" data-id="@location.Id" style="display: none;">Save</button>
+            </li>
+        }
+    </ul>
+}
+
+@section Scripts
+{
+    <script src="~/js/delete-favourite-location.js"></script>
+    <script src="~/js/update-favourite-location.js"></script>
+}
