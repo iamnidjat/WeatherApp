@@ -2,6 +2,8 @@
 
 WeatherApp is a comprehensive weather application built using ASP.NET Core MVC, designed to provide users with a wide range of weather-related features without the need for registration. Leveraging APIs such as OpenWeatherMap, Open-Meteo, SunriseSunset.io, and LocationIQ, WeatherApp offers an extensive set of functionalities to enhance the user experience.
 
+Note: The UI is currently in the development stage, and users might experience changes and improvements as the app evolves.
+
 ### Key Features:
 
 1. **User Authentication:**
