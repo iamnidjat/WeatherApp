@@ -43,7 +43,7 @@ namespace WeatherApp.Services.Implementations
             }
         }
 
-        public record SunriseSunsetModel(float lat, float lng, string date = null);
+        public record SunriseSunsetModel(float lat, float lng, string? date = null);
     }
 }
 

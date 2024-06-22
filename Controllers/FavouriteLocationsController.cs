@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WeatherApp.Models;
 using WeatherApp.Services.Interfaces;
 
@@ -15,6 +16,7 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet("Index/{userId:int}")]
+        [Authorize]
         public async Task<IActionResult> Index(int userId)
         {
             var fLocations = await _favouriteLocationsService.GetFLocationsAsync(userId);
@@ -22,6 +24,7 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet("AddFLocation/{userId:int}")]
+        [Authorize]
         public IActionResult AddFLocation(int userId)
         {
             var favouriteLocation = new FavouriteLocation
@@ -32,6 +35,7 @@ namespace WeatherApp.Controllers
         }
 
         [HttpPost("AddFLocation")]
+        [Authorize]
         public async Task<IActionResult> AddFLocation(FavouriteLocation fLocation)
         {
             if (ModelState.IsValid)

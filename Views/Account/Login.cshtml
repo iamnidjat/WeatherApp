@@ -1,20 +1,20 @@
 ﻿@model LoginModel;
 
-<h2>Вход в MyStat</h2>
+<h2>Login Page</h2>
 
 @using(Html.BeginForm())
 {
     <div class="validation" asp-validation-summary="ModelOnly"></div>
     <div>
         <div class="form-group">
-            <label asp-for="UserName" id="UserNameLabel">Введите имя пользователя:</label>
-            @Html.TextBoxFor(t => t.UserName)
+            <label asp-for="UserName" id="UserNameLabel">Enter username:</label>
+            @Html.TextBoxFor(t => t.UserName, new { @class  = "noInsertInput" })
             <span asp-validation-for="UserName" />
         </div>
         <div class="form-group">
-            <label asp-for="Password" id="PasswordLabel">Введите пароль:</label>
-            @Html.TextBoxFor(t => t.Password, new{
-                type = "Password"
+            <label asp-for="Password" id="PasswordLabel">Enter password:</label>
+            @Html.TextBoxFor(t => t.Password, new {
+                type = "Password", @class  = "noInsertInput"
             })
             <span asp-validation-for="Password" />
                 <button id="show_password" class="btn btn-primary" type="button">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="form-group">
-            <input type="submit" value="Войти" class="submitButton" />
+            <input type="submit" value="Login" class="submitButton" />
         </div>
     </div>
 }
@@ -41,6 +41,7 @@
 @section Scripts
 {
     <script src="~/js/login.js"></script>
+    <script src="~/js/prevent-manipulations.js"></script>
 }
 
 @section Styles

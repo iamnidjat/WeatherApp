@@ -50,6 +50,8 @@ namespace WeatherApp.Controllers
             var AirQualityDataRequest = new AirQualityDataRequest(0, 0);
             var searchedCities = new List<SearchedCities>();
 
+            SystemModel.Units = "metric";
+
             var existingCitiesCookie = Request.Cookies["SearchedCities"];
             if (!string.IsNullOrEmpty(existingCitiesCookie))
             {

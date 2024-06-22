@@ -14,8 +14,6 @@ namespace WeatherApp.Controllers
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
             );
 
-            Console.WriteLine($"Culture set to: {culture}");
-
             return LocalRedirect(returnUrl);
         }
     }

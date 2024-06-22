@@ -34,6 +34,15 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ChangeEmail">Change Email</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="GetNotifications" asp-route-userId="@userId">Subscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FavouriteLocations" asp-action="Index" asp-route-userId="@userId">Favourite Locations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FavouriteLocations" asp-action="AddFLocation" asp-route-userId="@userId">Add Favourite Locations</a>
+                            </li>
                         }
                         else
                         {
@@ -43,16 +52,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Sign up</a>
                             </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="GetNotifications" asp-route-userId="@userId">Subscription</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FavouriteLocations" asp-action="Index" asp-route-userId="@userId">Favourite Locations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FavouriteLocations" asp-action="AddFLocation" asp-route-userId="@userId">Add Favourite Locations</a>
-                        </li>
+                        }                       
                         <li class="nav-item">
                             <form id="lang-form-en" asp-controller="Language" asp-action="SetLanguage" method="post" class="d-inline">
                                 <input type="hidden" name="culture" value="en" />

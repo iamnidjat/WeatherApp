@@ -5,6 +5,26 @@
       "PackagePath": "staticwebassets\\WeatherApp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\additional-data.css",
+      "PackagePath": "staticwebassets\\css\\additional-data.css"
+    },
+    {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\air-quality-index.css",
+      "PackagePath": "staticwebassets\\css\\air-quality-index.css"
+    },
+    {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\city.css",
+      "PackagePath": "staticwebassets\\css\\city.css"
+    },
+    {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\forecast-air-quality.css",
+      "PackagePath": "staticwebassets\\css\\forecast-air-quality.css"
+    },
+    {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\full-weather-data.css",
+      "PackagePath": "staticwebassets\\css\\full-weather-data.css"
+    },
+    {
       "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
     },
@@ -13,28 +33,52 @@
       "PackagePath": "staticwebassets\\css\\register.css"
     },
     {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\search-city.css",
+      "PackagePath": "staticwebassets\\css\\search-city.css"
+    },
+    {
       "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\css\\sunrise-sunset-index.css",
+      "PackagePath": "staticwebassets\\css\\sunrise-sunset-index.css"
     },
     {
       "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\city-management-aq.js",
+      "PackagePath": "staticwebassets\\js\\city-management-aq.js"
+    },
+    {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\city-management-ss.js",
+      "PackagePath": "staticwebassets\\js\\city-management-ss.js"
+    },
+    {
       "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\city-management.js",
       "PackagePath": "staticwebassets\\js\\city-management.js"
+    },
+    {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\delete-favourite-location.js",
+      "PackagePath": "staticwebassets\\js\\delete-favourite-location.js"
     },
     {
       "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\login.js",
       "PackagePath": "staticwebassets\\js\\login.js"
     },
     {
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\prevent-manipulations.js",
+      "PackagePath": "staticwebassets\\js\\prevent-manipulations.js"
+    },
+    {
       "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\register.js",
       "PackagePath": "staticwebassets\\js\\register.js"
     },
     {
-      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\js\\update-favourite-location.js",
+      "PackagePath": "staticwebassets\\js\\update-favourite-location.js"
     },
     {
       "Id": "C:\\Important Files\\MyProjects\\WeatherApp\\wwwroot\\lib\\bootstrap\\LICENSE",

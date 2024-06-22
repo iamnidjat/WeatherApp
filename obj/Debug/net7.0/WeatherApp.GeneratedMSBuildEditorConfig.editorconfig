@@ -10,6 +10,8 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WeatherApp
 build_property.RootNamespace = WeatherApp
 build_property.ProjectDir = C:\Important Files\MyProjects\WeatherApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -46,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Important Files/MyProjects/WeatherApp/Views/AirQuality/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWlyUXVhbGl0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Important Files/MyProjects/WeatherApp/Views/Error/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcTm90Rm91bmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Important Files/MyProjects/WeatherApp/Views/FavouriteLocations/AddFLocation.cshtml]

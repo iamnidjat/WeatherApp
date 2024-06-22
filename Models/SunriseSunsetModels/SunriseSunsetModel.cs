@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace WeatherApp.Models.SunriseSunsetModels
+﻿namespace WeatherApp.Models.SunriseSunsetModels
 {
     public class Results
     {

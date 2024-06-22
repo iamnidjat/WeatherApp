@@ -1,22 +1,22 @@
 ﻿@model RegisterModel;
 
-<h2>Registration</h2>
+<h2>Registration Page</h2>
 
 @using (Html.BeginForm())
 {
     <div>
         <div>
-            <label asp-for="UserName" id="UserNameLabel">Введите имя пользователя:</label><br />
+            <label asp-for="UserName" id="UserNameLabel">Enter username:</label><br />
             @Html.TextBoxFor(t => t.UserName)
             <span asp-validation-for="UserName" />
         </div>
         <div>
-            <label asp-for="Email" id="EmailLabel">Введите email:</label><br />
+            <label asp-for="Email" id="EmailLabel">Enter email:</label><br />
             @Html.TextBoxFor(t => t.Email)
             <span asp-validation-for="Email" />
         </div>
         <div>
-            <label asp-for="Password" id="PasswordLabel">Введите пароль:</label><br />
+            <label asp-for="Password" id="PasswordLabel">Enter password:</label><br />
             @Html.TextBoxFor(t => t.Password, new
         {
         type = "Password"
@@ -27,7 +27,7 @@
             </button>
         </div>
         <div>
-            <label asp-for="ConfirmPassword" id="ConfirmPasswordLabel">Повторите пароль:</label><br />
+            <label asp-for="ConfirmPassword" id="ConfirmPasswordLabel">Repeat the password:</label><br />
             @Html.TextBoxFor(t => t.ConfirmPassword, new{
         type = "Password"
         })

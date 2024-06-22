@@ -1,40 +1,36 @@
 ﻿@model AirQualityDTO
 
 <div class="container">
-
-    <div class="sub-container">
-
-        <div class="form-group col-md-offset-3 col-md-5">
-
-            <h2>Air Quality for the selected city</h2>
-
-            <label asp-for="Times"></label>
-
-            @foreach (var times in Model.Times)
-            {
-                <div>@times</div>
-            }
-
-            <label asp-for="Temperatures"></label>
-
-            @foreach (var temp in Model.Temperatures)
-            {
-                <div>@temp</div>
-            }
+    <div class="row justify-content-center">
+        <div class="col-md-8 quality-table">
+            <h2 class="text-center">Air Quality for the Selected City</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Time</th>
+                        <th scope="col">Air Quality Index</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Times.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.Times[i]</td>
+                            <td>@Model.Temperatures[i]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="text-center">
+                <form method="get">
+                    <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-custom">Return</button>
+                </form>
+            </div>
         </div>
-
     </div>
-
-    <div class="container">
-
-        <div class="form-group col-md-offset-3 col-md-5">
-
-            <form method="get">
-                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-success">Return</button>
-            </form>
-
-        </div>
-
-    </div>
-
 </div>
+
+@section Styles
+{
+    <link href="~/css/forecast-air-quality.css" type="text/css" rel="stylesheet" />
+}

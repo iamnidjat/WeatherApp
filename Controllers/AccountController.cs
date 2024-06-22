@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
 using BC = BCrypt.Net.BCrypt;
 using WeatherApp.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WeatherApp.Controllers
 {
@@ -142,12 +143,14 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult ChangePassword()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> ChangePassword(string login, string oldPassword, string newPassword, string confirmPassword)
         {
             if (newPassword != confirmPassword)
@@ -180,11 +183,14 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult ChangeEmail()
         {
             return View();
         }
 
+        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> ChangeEmail(string login, string email)
         {
             
@@ -211,6 +217,7 @@ namespace WeatherApp.Controllers
         }
 
         [HttpGet("GetNotifications/{userId:int}")]
+        [Authorize]
         public IActionResult GetNotifications(int userId)
         {
             var user = new User()
@@ -222,6 +229,7 @@ namespace WeatherApp.Controllers
         }
 
         [HttpPost("GetNotifications/{userId:int}")]
+        [Authorize]
         public async Task<IActionResult> GetNotifications(int userId, string city, bool flag)
         {
             if (flag) await _accountService.EnableSubscriptionAsync(userId, city);

@@ -117,7 +117,181 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add Favourite Location" xml:space="preserve">
+    <value>Add Favourite Location</value>
+  </data>
+  <data name="Air quality for the selected city" xml:space="preserve">
+    <value>Air quality for the selected city</value>
+  </data>
+  <data name="Change Email" xml:space="preserve">
+    <value>Change Email</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="City Name" xml:space="preserve">
+    <value>City Name</value>
+  </data>
+  <data name="Confirm New Password" xml:space="preserve">
+    <value>Confirm New Password</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Disable Subscription" xml:space="preserve">
+    <value>Disable Subscription</value>
+  </data>
+  <data name="Email is not specified" xml:space="preserve">
+    <value>Email is not specified</value>
+  </data>
+  <data name="Enable Subscription" xml:space="preserve">
+    <value>Enable Subscription</value>
+  </data>
+  <data name="End Date" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="End Hour" xml:space="preserve">
+    <value>End Hour</value>
+  </data>
+  <data name="Enter city name" xml:space="preserve">
+    <value>Enter city name</value>
+  </data>
+  <data name="Enter email" xml:space="preserve">
+    <value>Enter email</value>
+  </data>
+  <data name="Enter password" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="Enter username" xml:space="preserve">
+    <value>Enter username</value>
+  </data>
+  <data name="Enter your email address to reset your password" xml:space="preserve">
+    <value>Enter your email address to reset your password</value>
+  </data>
+  <data name="Favourite Locations" xml:space="preserve">
+    <value>Favourite Locations</value>
+  </data>
+  <data name="Forecast for the selected city" xml:space="preserve">
+    <value>Forecast for the selected city</value>
+  </data>
+  <data name="Forgot Password" xml:space="preserve">
+    <value>Forgot Password</value>
+  </data>
+  <data name="Get the full weather data" xml:space="preserve">
+    <value>Get the full weather data</value>
+  </data>
+  <data name="Go to Air Quality" xml:space="preserve">
+    <value>Go to Air Quality</value>
+  </data>
+  <data name="Go to Sunrise/Sunset" xml:space="preserve">
+    <value>Go to Sunrise/Sunset</value>
+  </data>
+  <data name="Guest" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="Imperial" xml:space="preserve">
+    <value>Imperial</value>
+  </data>
+  <data name="Incorrect id" xml:space="preserve">
+    <value>Incorrect id</value>
+  </data>
+  <data name="Location Name" xml:space="preserve">
+    <value>Location Name</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login Page" xml:space="preserve">
+    <value>Login Page</value>
+  </data>
+  <data name="Metric" xml:space="preserve">
+    <value>Metric</value>
+  </data>
+  <data name="New Email" xml:space="preserve">
+    <value>New Email</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="No cities have been searched yet" xml:space="preserve">
+    <value>No cities have been searched yet</value>
+  </data>
+  <data name="Old Password" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="Password is not specified" xml:space="preserve">
+    <value>Password is not specified</value>
+  </data>
+  <data name="Passwords do not match" xml:space="preserve">
+    <value>Passwords do not match</value>
+  </data>
+  <data name="Precise forecast for the selected city" xml:space="preserve">
+    <value>Precise forecast for the selected city</value>
+  </data>
+  <data name="Registration Page" xml:space="preserve">
+    <value>Registration Page</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Repeat the password" xml:space="preserve">
+    <value>Repeat the password</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search the sunrise/sunset data in a city" xml:space="preserve">
+    <value>Search the sunrise/sunset data in a city</value>
+  </data>
+  <data name="Searched Cities" xml:space="preserve">
+    <value>Searched Cities</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Start Hour" xml:space="preserve">
+    <value>Start Hour</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Subscription" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="Sunrise&amp;Sunset data for the selected city" xml:space="preserve">
+    <value>Sunrise&amp;Sunset data for the selected city</value>
+  </data>
+  <data name="Temperatures" xml:space="preserve">
+    <value>Temperatures</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>Times</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
+  </data>
+  <data name="Username is not specified" xml:space="preserve">
+    <value>Username is not specified</value>
+  </data>
+  <data name="You must enter a city name" xml:space="preserve">
+    <value>You must enter a city name</value>
+  </data>
+  <data name="You must specify a system" xml:space="preserve">
+    <value>You must specify a system</value>
   </data>
 </root>

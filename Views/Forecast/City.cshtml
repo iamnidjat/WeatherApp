@@ -1,5 +1,6 @@
 ﻿@model CompositeSearchModel
 
+<body>
 <div class="container">
     @if (Model.City != null)
     {
@@ -83,6 +84,10 @@
         </div>
     </div>
     }
-
-   
 </div>
+</body>
+
+@section Styles
+{
+    <link href="~/css/city.css" type="text/css" rel="stylesheet" />
+}

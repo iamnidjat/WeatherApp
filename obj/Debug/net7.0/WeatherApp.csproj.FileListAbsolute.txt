@@ -42,9 +42,6 @@ C:\Users\huawei\Desktop\WeatherApp\bin\Debug\net7.0\Microsoft.Extensions.Logging
 C:\Users\huawei\Desktop\WeatherApp\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\Users\huawei\Desktop\WeatherApp\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
 C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\appsettings.Development.json
-C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\Resources\az-AZ.json
-C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\Resources\en-US.json
-C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\Resources\ru-RU.json
 C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\appsettings.json
 C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\WeatherApp.staticwebassets.runtime.json
 C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\WeatherApp.exe
@@ -116,10 +113,27 @@ C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\staticwebassets.develo
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\scopedcss\bundle\WeatherApp.styles.css
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\scopedcss\projectbundle\WeatherApp.bundle.scp.css
-C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.csproj.CopyComplete
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.dll
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\refint\WeatherApp.dll
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.pdb
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.genruntimeconfig.cache
 C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\ref\WeatherApp.dll
 C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\az\WeatherApp.resources.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\en\WeatherApp.resources.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\ru\WeatherApp.resources.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\MailKit.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\MimeKit.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\System.Formats.Asn1.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+C:\Important Files\MyProjects\WeatherApp\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.Resources.Views.Forecast.SearchCity.az.resources
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.Resources.Views.Forecast.SearchCity.en.resources
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.Resources.Views.Forecast.SearchCity.ru.resources
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.csproj.GenerateResource.cache
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\az\WeatherApp.resources.dll
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\en\WeatherApp.resources.dll
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\ru\WeatherApp.resources.dll
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.sourcelink.json
+C:\Important Files\MyProjects\WeatherApp\obj\Debug\net7.0\WeatherApp.csproj.Up2Date

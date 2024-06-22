@@ -16,6 +16,7 @@ else if (TempData["ErrorMessage"] != null)
     </div>
 }
 
+<body>
 <div>
     @if (User.Identity.IsAuthenticated)
     {
@@ -37,12 +38,12 @@ else if (TempData["ErrorMessage"] != null)
                 <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
                 <div class="systems">   
                     <div>
-                        @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", new { @checked = "checked"} )
+                            @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", Model.SystemModel.Units == "metric" ? new { @checked = "checked" } : null)
                         <label asp-for="@Model.SystemModel.Units">Metric</label>
                         <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
                     </div>
                     <div>
-                        @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial")
+                            @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial", Model.SystemModel.Units == "imperial" ? new { @checked = "checked" } : null)
                         <label asp-for="@Model.SystemModel.Units">Imperial</label>
                         <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
                     </div>
@@ -90,6 +91,12 @@ else if (TempData["ErrorMessage"] != null)
     }
 
 </div>
+</body>
+
+@section Styles
+{
+    <link href="~/css/search-city.css" type="text/css" rel="stylesheet" />
+}
 
 @section Scripts
 {

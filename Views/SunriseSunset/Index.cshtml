@@ -1,60 +1,73 @@
 ﻿@using WeatherApp.Services.Implementations;
 @model CompositeViewModel
 
-<div>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <h3>User: @User.Identity.Name</h3>
-    }
-    else
-    {
-        <h3>Guest</h3>
-    }
-</div>
-
-<div class="container">
-    <form method="post">
-        <div class="sub-container">
-            <div class="form-group col-md-offset-3 col-md-5">
-                <h2>Search the weather forecast in a city</h2>
-                <label asp-for="@Model.SearchCityModel.CityName" style="font-family: Arial"></label>
-                <input asp-for="@Model.SearchCityModel.CityName" id="cityNameInput" class="form-control" />
-                <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
-                <div>
-                    <label for="startDate">Date</label>
-                    @Html.TextBoxFor(m => m.SunriseSunsetModel.date, "{0:yyyy-MM-dd}", new { @type = "date" })
-                </div>               
-            </div>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h3>User: @User.Identity.Name</h3>
+            }
+            else
+            {
+                <h3>Guest</h3>
+            }
         </div>
-        <div class="sub-container">
-            <div class="form-group col-md-offset-3 col-md-5">
-                <button asp-controller="SunriseSunset" asp-action="Index" class="btn btn-primary">Search</button>
+    </div>
+
+    <form method="post">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="mb-4 text-center">Search the sunrise/sunset data in a city</h2>
+                <div class="form-group">
+                    <label asp-for="@Model.SearchCityModel.CityName" class="font-weight-bold"></label>
+                    <input asp-for="@Model.SearchCityModel.CityName" id="cityNameInput" class="form-control" />
+                    <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="startDate" class="font-weight-bold">Date</label>
+                    @Html.TextBoxFor(m => m.SunriseSunsetModel.date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                </div>
+                <div class="text-center">
+                    <button asp-controller="SunriseSunset" asp-action="Index" class="btn btn-primary">Search</button>
+                </div>
             </div>
         </div>
     </form>
-  
-    <h2>Searched Cities:</h2>
-    @if (Model.SearchedCities != null && Model.SearchedCities.Any())
-    {
-        <ul>
-            @foreach (var city in Model.SearchedCities)
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <h2 class="mb-4 text-center">Searched Cities:</h2>
+            @if (Model.SearchedCities != null && Model.SearchedCities.Any())
             {
-                <li>
-                    @if (!string.IsNullOrEmpty(city.Name))
+                <ul class="list-group">
+                    @foreach (var city in Model.SearchedCities)
                     {
-                        <a href="@Url.Action("City", "SunriseSunset", new { latitude = city.Latitude, longitude = city.Longitude })">@city.Name</a>
-                        <span>@city.Date?.ToString("yyyy-MM-dd HH:mm")</span>
-                        <button class="removeCityButton" data-city="@city.Name">X</button>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                @if (!string.IsNullOrEmpty(city.Name))
+                                {
+                                    <a href="@Url.Action("City", "SunriseSunset", new { latitude = city.Latitude, longitude = city.Longitude })">@city.Name</a>
+                                    <span class="ml-2 text-muted">@city.Date?.ToString("yyyy-MM-dd HH:mm")</span>
+                                }
+                            </div>
+                            <button class="btn btn-danger btn-sm removeCityButton" data-city="@city.Name">X</button>
+                        </li>
                     }
-                </li>               
+                </ul>
             }
-        </ul>
-    }
-    else
-    {
-        <p>No cities have been searched yet.</p>
-    }
+            else
+            {
+                <p class="text-center">No cities have been searched yet.</p>
+            }
+        </div>
+    </div>
 </div>
+
+@section Styles
+{
+    <link href="~/css/sunrise-sunset-index.css"/>
+}
 
 @section Scripts
     {
