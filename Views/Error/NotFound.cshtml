@@ -1,14 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Page Not Found";
-}
+﻿<body>
+    <div class="error-container">
+        <h1 class="display-4">404</h1>
+        <p class="lead">Oops! The page you are looking for does not exist.</p>
+        <a href="/" class="btn btn-primary">Go Home</a>
+    </div>
+</body>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+@section Styles
+{
     <style>
         body {
             background-color: #f8f9fa;
@@ -26,12 +26,4 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
-</head>
-<body>
-    <div class="error-container">
-        <h1 class="display-4">404</h1>
-        <p class="lead">Oops! The page you are looking for does not exist.</p>
-        <a href="/" class="btn btn-primary">Go Home</a>
-    </div>
-</body>
-</html>
+}

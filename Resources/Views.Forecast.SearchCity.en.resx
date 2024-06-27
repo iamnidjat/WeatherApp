@@ -132,6 +132,9 @@
   <data name="City Name" xml:space="preserve">
     <value>City Name</value>
   </data>
+  <data name="CityNameRequired" xml:space="preserve">
+    <value>City Name Required</value>
+  </data>
   <data name="Confirm New Password" xml:space="preserve">
     <value>Confirm New Password</value>
   </data>

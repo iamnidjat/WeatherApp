@@ -4,7 +4,7 @@ using WeatherApp.Services.Interfaces;
 
 namespace WeatherApp.Services.Implementations
 {
-    public class FavouriteLocationsService: IFavouriteLocationsService
+    public class FavouriteLocationsService : IFavouriteLocationsService
     {
         private readonly WeatherAppDbContext _context;
         private readonly ILogger<FavouriteLocationsService> _logger;

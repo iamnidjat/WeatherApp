@@ -1,96 +1,92 @@
-﻿@using WeatherApp.Services.Implementations;
-@model CompositeViewModel
-@using Microsoft.AspNetCore.Mvc.Localization;
-@inject IViewLocalizer Localizer
+﻿@model CompositeViewModel
 
 @if (TempData["SuccessMessage"] != null)
 {
     <div id="successMessage" class="alert alert-success" role="alert">
         @TempData["SuccessMessage"]
     </div>
-}                                               
+}
 else if (TempData["ErrorMessage"] != null)
 {
-    <div id="errorMessage" class="alert alert-success" role="alert">
+    <div id="errorMessage" class="alert alert-danger" role="alert">
         @TempData["ErrorMessage"]
     </div>
 }
 
 <body>
-<div>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <h3>@Localizer["User"]: @User.Identity.Name</h3>
-    }
-    else
-    {
-        <h3>@Localizer["Guest"]</h3>
-    }
-</div>
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h3>@Localizer["User"]: @User.Identity.Name</h3>
+        }
+        else
+        {
+            <h3>@Localizer["Guest"]</h3>
+        }
+    </div>
 
-<div class="container">
-    <form method="post">
-        <div class="sub-container">
-            <div class="form-group col-md-offset-3 col-md-5">
-                <h2>Search the weather forecast in a city</h2>
-                <label asp-for="@Model.SearchCityModel.CityName" style="font-family: Arial"></label>
-                <input asp-for="@Model.SearchCityModel.CityName" id="cityNameInput" class="form-control" />
-                <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
-                <div class="systems">   
-                    <div>
+    <div class="container">
+        <form method="post">
+            <div class="sub-container">
+                <div class="form-group col-md-offset-3 col-md-5">
+                    <h2>@Localizer["Search the weather forecast in a city"]</h2>
+                    <label asp-for="@Model.SearchCityModel.CityName" style="font-family: Arial"></label>
+                    <input asp-for="@Model.SearchCityModel.CityName" id="cityNameInput" class="form-control" />
+                    <span asp-validation-for="@Model.SearchCityModel.CityName" class="text-danger"></span>
+                    <div class="systems">
+                        <div>
                             @Html.RadioButtonFor(m => m.SystemModel.Units, "metric", Model.SystemModel.Units == "metric" ? new { @checked = "checked" } : null)
-                        <label asp-for="@Model.SystemModel.Units">Metric</label>
-                        <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
-                    </div>
-                    <div>
+                            <label asp-for="@Model.SystemModel.Units">@Localizer["Metric"]</label>
+                            <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
+                        </div>
+                        <div>
                             @Html.RadioButtonFor(m => m.SystemModel.Units, "imperial", Model.SystemModel.Units == "imperial" ? new { @checked = "checked" } : null)
-                        <label asp-for="@Model.SystemModel.Units">Imperial</label>
-                        <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
+                            <label asp-for="@Model.SystemModel.Units">@Localizer["Imperial"]</label>
+                            <span asp-validation-for="@Model.SystemModel.Units" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="sub-container">
-            <div class="form-group col-md-offset-3 col-md-5">               
-                <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary">Search</button>
-                <button type="button" class="btn btn-primary" onclick="updateHref()">Get the sunrise/sunset data</button>
-                <a id="search2Link" style="display: none;"></a>
-                <button type="button" class="btn btn-primary" onclick="updateHref2()">Get the full weather data</button>
-                <a id="search3Link" style="display: none;"></a>
-                <button type="button" class="btn btn-primary" onclick="updateHref4()">Get the full weather data2</button>
-                <a id="search5Link" style="display: none;"></a>
-                <button type="button" class="btn btn-primary" onclick="updateHref3()">Get the air quality data</button>
-                <a id="search4Link" style="display: none;"></a>
+            <div class="sub-container">
+                <div class="form-group col-md-offset-3 col-md-5">
+                    <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-primary">Search</button>
+                    <button type="button" class="btn btn-primary" onclick="updateHref('search2Link', '@Url.Action("AdditionalData", "SunriseSunset")')">@Localizer["Get the sunrise/sunset data"]</button>
+                    <a id="search2Link" style="display: none;"></a>
+                    <button type="button" class="btn btn-primary" onclick="updateHref('search3Link', '@Url.Action("FullWeatherData", "Forecast")', '&dailyData=temperature_2m_max')">@Localizer["Get the full weather data"]</button>
+                    <a id="search3Link" style="display: none;"></a>
+                    <button type="button" class="btn btn-primary" onclick="updateHref('search5Link', '@Url.Action("FullWeatherData", "Forecast")', '&hourlyData=temperature_2m')">@Localizer["Get the full weather data2"]</button>
+                    <a id="search5Link" style="display: none;"></a>
+                    <button type="button" class="btn btn-primary" onclick="updateHref('search4Link', '@Url.Action("AirQuality", "Forecast")')">@Localizer["Get the air quality data"]</button>
+                    <a id="search4Link" style="display: none;"></a>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <a href="@Url.Action("Index", "AirQuality")">Go to Air Quality</a>
-    <a href="@Url.Action("Index", "SunriseSunset")">Go to Sunrise/Sunset</a>
-   
-    <h2>Searched Cities:</h2>
-    @if (Model.SearchedCities != null && Model.SearchedCities.Any())
-    {
-        <ul>
-            @foreach (var city in Model.SearchedCities)
-            {
-                <li>                    
-                    @if (!string.IsNullOrEmpty(city.Name))
-                    {
-                        <a href="@Url.Action("City", "Forecast", new { city = city.Name, system = city.System })">@city.Name</a>
-                        <span>@city.Date?.ToString("yyyy-MM-dd HH:mm")</span>
-                        <button class="removeCityButton" data-city="@city.Name">X</button>
-                    }
-                </li>
-            }
-        </ul>
-    }
-    else
-    {
-        <p>No cities have been searched yet.</p>
-    }
+        <a href="@Url.Action("Index", "AirQuality")">@Localizer["Go to Air Quality"]</a>
+        <a href="@Url.Action("Index", "SunriseSunset")">@Localizer["Go to Sunrise/Sunset"]</a>
 
-</div>
+        <h2>@Localizer["Searched Cities"]:</h2>
+        @if (Model.SearchedCities != null && Model.SearchedCities.Any())
+        {
+            <ul>
+                @foreach (var city in Model.SearchedCities)
+                {
+                    <li>
+                        @if (!string.IsNullOrEmpty(city.Name))
+                        {
+                            <a href="@Url.Action("City", "Forecast", new { city = city.Name, system = city.System })">@city.Name</a>
+                            <span>@city.Date?.ToString("yyyy-MM-dd HH:mm")</span>
+                            <button class="removeCityButton" data-city="@city.Name">X</button>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>@Localizer["No cities have been searched yet"]</p>
+        }
+    </div>
 </body>
 
 @section Styles
@@ -103,64 +99,21 @@ else if (TempData["ErrorMessage"] != null)
     <script src="~/js/city-management.js"></script>
 
     <script type="text/javascript">
-
-        function updateHref() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-                    var link = document.getElementById("search2Link");
-                    link.href = '@Url.Action("AdditionalData", "SunriseSunset")' + '?latitude=' + latitude + '&longitude=' + longitude;
-                    link.click();
-                }, showError);
-            } else {
-                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function updateHref2() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-                    var link = document.getElementById("search3Link");
-                    link.href = '@Url.Action("FullWeatherData", "Forecast")' + '?latitude=' + latitude + '&longitude=' + longitude + '&dailyData=temperature_2m_max';
-                    link.click();
-                }, showError);
-            } else {
-                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function updateHref4() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-                    var link = document.getElementById("search5Link");
-                    link.href = '@Url.Action("FullWeatherData", "Forecast")' + '?latitude=' + latitude + '&longitude=' + longitude + '&hourlyData=temperature_2m';
-                    link.click();
-                }, showError);
-            } else {
-                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function updateHref3() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-                    var link = document.getElementById("search4Link");
-                    link.href = '@Url.Action("AirQuality", "Forecast")' + '?latitude=' + latitude + '&longitude=' + longitude;
-                    link.click();
-                }, showError);
-            } else {
-                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
         const locationIQApiKey = '@ViewData["LocationIQApiKey"]';
+
+        function updateHref(linkId, actionUrl, extraParams = '') {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const link = document.getElementById(linkId);
+                    link.href = `${actionUrl}?latitude=${latitude}&longitude=${longitude}${extraParams}`;
+                    link.click();
+                }, showError);
+            } else {
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
 
         function showError(error) {
             let errorMessage = '';
@@ -211,7 +164,7 @@ else if (TempData["ErrorMessage"] != null)
         // Call getLocation on page load
         window.onload = getLocation;
 
-        setTimeout(function () {
+        setTimeout(() => {
             document.getElementById('successMessage').classList.add('hidden');
             document.getElementById('errorMessage').classList.add('hidden');
         }, 10000); // 10 seconds

@@ -61,7 +61,7 @@ namespace WeatherApp.Controllers
                     return RedirectToAction("SearchCity", "Forecast");
                 }
 
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                ModelState.AddModelError("", "Incorrect login or password");
             }
 
             return View(model);
@@ -115,7 +115,7 @@ namespace WeatherApp.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                    ModelState.AddModelError("", "Incorrect login or passwordd");
                 }
             }
 

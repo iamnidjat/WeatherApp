@@ -98,4 +98,181 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+	<data name="Add Favourite Location" xml:space="preserve">
+    <value>Sevimli Məkanı Əlavə Edin</value>
+  </data>
+	<data name="Air quality for the selected city" xml:space="preserve">
+    <value>Seçilmiş şəhər üçün hava keyfiyyəti</value>
+  </data>
+	<data name="Change Email" xml:space="preserve">
+    <value>Email-i Dəyişin</value>
+  </data>
+	<data name="Change Password" xml:space="preserve">
+    <value>Şifrəni Dəyişin</value>
+  </data>
+	<data name="City Name" xml:space="preserve">
+    <value>Şəhər Adı</value>
+  </data>
+	<data name="Confirm New Password" xml:space="preserve">
+    <value>Yeni Şifrəni Təsdiqləyin</value>
+  </data>
+	<data name="Create" xml:space="preserve">
+    <value>Yarat</value>
+  </data>
+	<data name="Date" xml:space="preserve">
+    <value>Tarix</value>
+  </data>
+	<data name="Disable Subscription" xml:space="preserve">
+    <value>Abunəliyi Dayandırın</value>
+  </data>
+	<data name="Email is not specified" xml:space="preserve">
+    <value>Email göstərilməyib</value>
+  </data>
+	<data name="Enable Subscription" xml:space="preserve">
+    <value>Abunəliyi Aktivləşdirin</value>
+  </data>
+	<data name="End Date" xml:space="preserve">
+    <value>Bitmə Tarixi</value>
+  </data>
+	<data name="End Hour" xml:space="preserve">
+    <value>Bitmə Saatı</value>
+  </data>
+	<data name="Enter city name" xml:space="preserve">
+    <value>Şəhərin adını daxil edin</value>
+  </data>
+	<data name="Enter email" xml:space="preserve">
+    <value>Email-i daxil edin</value>
+  </data>
+	<data name="Enter password" xml:space="preserve">
+    <value>Şifrəni daxil edin</value>
+  </data>
+	<data name="Enter username" xml:space="preserve">
+    <value>İstifadəçi adını daxil edin</value>
+  </data>
+	<data name="Enter your email address to reset your password" xml:space="preserve">
+    <value>Şifrənizi sıfırlamaq üçün email adresinizi daxil edin</value>
+  </data>
+	<data name="Favourite Locations" xml:space="preserve">
+    <value>Sevimli Məkanlar</value>
+  </data>
+	<data name="Forecast for the selected city" xml:space="preserve">
+    <value>Seçilmiş şəhər üçün proqnoz</value>
+  </data>
+	<data name="Forgot Password" xml:space="preserve">
+    <value>Şifrəni Unutdunuz</value>
+  </data>
+	<data name="Get the full weather data" xml:space="preserve">
+    <value>Tam hava məlumatlarını əldə edin</value>
+  </data>
+	<data name="Go to Air Quality" xml:space="preserve">
+    <value>Hava Keyfiyyətinə Gedin</value>
+  </data>
+	<data name="Go to Sunrise/Sunset" xml:space="preserve">
+    <value>Günəşin Doğması/Batmasına Gedin</value>
+  </data>
+	<data name="Guest" xml:space="preserve">
+    <value>Qonaq</value>
+  </data>
+	<data name="Imperial" xml:space="preserve">
+    <value>İmperial</value>
+  </data>
+	<data name="Incorrect id" xml:space="preserve">
+    <value>Səhv ID</value>
+  </data>
+	<data name="Location Name" xml:space="preserve">
+    <value>Məkan Adı</value>
+  </data>
+	<data name="Login" xml:space="preserve">
+    <value>Daxil Ol</value>
+  </data>
+	<data name="Login Page" xml:space="preserve">
+    <value>Giriş Səhifəsi</value>
+  </data>
+	<data name="Metric" xml:space="preserve">
+    <value>Metirik</value>
+  </data>
+	<data name="New Email" xml:space="preserve">
+    <value>Yeni Email</value>
+  </data>
+	<data name="New Password" xml:space="preserve">
+    <value>Yeni Şifrə</value>
+  </data>
+	<data name="No cities have been searched yet" xml:space="preserve">
+    <value>Heç bir şəhər axtarılmayıb</value>
+  </data>
+	<data name="Old Password" xml:space="preserve">
+    <value>Köhnə Şifrə</value>
+  </data>
+	<data name="Password is not specified" xml:space="preserve">
+    <value>Şifrə göstərilməyib</value>
+  </data>
+	<data name="Passwords do not match" xml:space="preserve">
+    <value>Şifrələr uyğun gəlmir</value>
+  </data>
+	<data name="Precise forecast for the selected city" xml:space="preserve">
+    <value>Seçilmiş şəhər üçün dəqiq proqnoz</value>
+  </data>
+	<data name="Registration Page" xml:space="preserve">
+    <value>Qeydiyyat Səhifəsi</value>
+  </data>
+	<data name="Remember me" xml:space="preserve">
+    <value>Məni xatırla</value>
+  </data>
+	<data name="Repeat the password" xml:space="preserve">
+    <value>Şifrəni təkrar edin</value>
+  </data>
+	<data name="Reset" xml:space="preserve">
+    <value>Sıfırlamaq</value>
+  </data>
+	<data name="Return" xml:space="preserve">
+    <value>Qayıt</value>
+  </data>
+	<data name="Save" xml:space="preserve">
+    <value>Yadda saxla</value>
+  </data>
+	<data name="Search" xml:space="preserve">
+    <value>Axtarış</value>
+  </data>
+	<data name="Search the sunrise/sunset data in a city" xml:space="preserve">
+    <value>Şəhərdə günəşin doğması/batması məlumatlarını axtarın</value>
+  </data>
+	<data name="Searched Cities" xml:space="preserve">
+    <value>Axtarılmış Şəhərlər</value>
+  </data>
+	<data name="Start Date" xml:space="preserve">
+    <value>Başlama Tarixi</value>
+  </data>
+	<data name="Start Hour" xml:space="preserve">
+    <value>Başlama Saatı</value>
+  </data>
+	<data name="Submit" xml:space="preserve">
+    <value>Təsdiqlə</value>
+  </data>
+	<data name="Subscription" xml:space="preserve">
+    <value>Abunəlik</value>
+  </data>
+	<data name="Sunrise&amp;Sunset data for the selected city" xml:space="preserve">
+    <value>Seçilmiş şəhər üçün günəşin doğması&amp;batması məlumatları</value>
+  </data>
+	<data name="Temperatures" xml:space="preserve">
+    <value>Temperatur</value>
+  </data>
+	<data name="Times" xml:space="preserve">
+    <value>Vaxtlar</value>
+  </data>
+	<data name="Update" xml:space="preserve">
+    <value>Yeniləmə</value>
+  </data>
+	<data name="User" xml:space="preserve">
+    <value>İstifadəçi</value>
+  </data>
+	<data name="Username is not specified" xml:space="preserve">
+    <value>İstifadəçi adı göstərilməyib</value>
+  </data>
+	<data name="You must enter a city name" xml:space="preserve">
+    <value>Şəhərin adını daxil etməlisiniz</value>
+  </data>
+	<data name="You must specify a system" xml:space="preserve">
+    <value>Sistemi göstərməlisiniz</value>
+  </data>
 </root>

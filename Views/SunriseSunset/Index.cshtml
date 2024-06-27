@@ -1,16 +1,15 @@
-﻿@using WeatherApp.Services.Implementations;
-@model CompositeViewModel
+﻿@model CompositeViewModel
 
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8 text-center">
             @if (User.Identity.IsAuthenticated)
             {
-                <h3>User: @User.Identity.Name</h3>
+                <h3>@Localizer["User"]: @User.Identity.Name</h3>
             }
             else
             {
-                <h3>Guest</h3>
+                <h3>@Localizer["Guest"]</h3>
             }
         </div>
     </div>

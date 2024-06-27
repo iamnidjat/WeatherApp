@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using WeatherApp.Models.OpenWeatherMapModels;
+﻿using Microsoft.AspNetCore.Mvc;
 using WeatherApp.Models;
 using WeatherApp.Services.Interfaces;
 using WeatherApp.ViewModels;

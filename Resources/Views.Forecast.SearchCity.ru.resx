@@ -117,7 +117,184 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add Favourite Location" xml:space="preserve">
+    <value>Добавить Избранное Место</value>
+  </data>
+  <data name="Air quality for the selected city" xml:space="preserve">
+    <value>Качество воздуха для выбранного города</value>
+  </data>
+  <data name="Change Email" xml:space="preserve">
+    <value>Изменить Электронную Почту</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Изменить Пароль</value>
+  </data>
+  <data name="City Name" xml:space="preserve">
+    <value>Название Города</value>
+  </data>
+  <data name="CityNameRequired" xml:space="preserve">
+    <value>Укажите название города</value>
+  </data>
+  <data name="Confirm New Password" xml:space="preserve">
+    <value>Подтвердите Новый Пароль</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Disable Subscription" xml:space="preserve">
+    <value>Отключить Подписку</value>
+  </data>
+  <data name="Email is not specified" xml:space="preserve">
+    <value>Электронная почта не указана</value>
+  </data>
+  <data name="Enable Subscription" xml:space="preserve">
+    <value>Включить Подписку</value>
+  </data>
+  <data name="End Date" xml:space="preserve">
+    <value>Дата Окончания</value>
+  </data>
+  <data name="End Hour" xml:space="preserve">
+    <value>Время Окончания</value>
+  </data>
+  <data name="Enter city name" xml:space="preserve">
+    <value>Введите название города</value>
+  </data>
+  <data name="Enter email" xml:space="preserve">
+    <value>Введите электронную почту</value>
+  </data>
+  <data name="Enter password" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="Enter username" xml:space="preserve">
+    <value>Введите имя пользователя</value>
+  </data>
+  <data name="Enter your email address to reset your password" xml:space="preserve">
+    <value>Введите адрес электронной почты для сброса пароля</value>
+  </data>
+  <data name="Favourite Locations" xml:space="preserve">
+    <value>Избранные Места</value>
+  </data>
+  <data name="Forecast for the selected city" xml:space="preserve">
+    <value>Прогноз для выбранного города</value>
+  </data>
+  <data name="Forgot Password" xml:space="preserve">
+    <value>Забыли Пароль</value>
+  </data>
+  <data name="Get the full weather data" xml:space="preserve">
+    <value>Получить полные данные о погоде</value>
+  </data>
+  <data name="Go to Air Quality" xml:space="preserve">
+    <value>Перейти к Качеству Воздуха</value>
+  </data>
+  <data name="Go to Sunrise/Sunset" xml:space="preserve">
+    <value>Перейти к Восходу/Закату</value>
+  </data>
+  <data name="Guest" xml:space="preserve">
+    <value>Гость</value>
+  </data>
+  <data name="Imperial" xml:space="preserve">
+    <value>Имперская система</value>
+  </data>
+  <data name="Incorrect id" xml:space="preserve">
+    <value>Неверный идентификатор</value>
+  </data>
+  <data name="Location Name" xml:space="preserve">
+    <value>Название Места</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Login Page" xml:space="preserve">
+    <value>Страница Входа</value>
+  </data>
+  <data name="Metric" xml:space="preserve">
+    <value>Метрическая система</value>
+  </data>
+  <data name="New Email" xml:space="preserve">
+    <value>Новая Электронная Почта</value>
+  </data>
+  <data name="New Password" xml:space="preserve">
+    <value>Новый Пароль</value>
+  </data>
+  <data name="No cities have been searched yet" xml:space="preserve">
+    <value>Города еще не искались</value>
+  </data>
+  <data name="Old Password" xml:space="preserve">
+    <value>Старый Пароль</value>
+  </data>
+  <data name="Password is not specified" xml:space="preserve">
+    <value>Пароль не указан</value>
+  </data>
+  <data name="Passwords do not match" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="Precise forecast for the selected city" xml:space="preserve">
+    <value>Точный прогноз для выбранного города</value>
+  </data>
+  <data name="Registration Page" xml:space="preserve">
+    <value>Страница Регистрации</value>
+  </data>
+  <data name="Remember me" xml:space="preserve">
+    <value>Запомнить меня</value>
+  </data>
+  <data name="Repeat the password" xml:space="preserve">
+    <value>Повторите пароль</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Вернуться</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Search the sunrise/sunset data in a city" xml:space="preserve">
+    <value>Поиск данных о восходе/закате в городе</value>
+  </data>
+  <data name="Searched Cities" xml:space="preserve">
+    <value>Искали Города</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Дата Начала</value>
+  </data>
+  <data name="Start Hour" xml:space="preserve">
+    <value>Время Начала</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Subscription" xml:space="preserve">
+    <value>Подписка</value>
+  </data>
+  <data name="Sunrise&amp;Sunset data for the selected city" xml:space="preserve">
+    <value>Данные о Восходе&amp;Закате для выбранного города</value>
+  </data>
+  <data name="Temperatures" xml:space="preserve">
+    <value>Температуры</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>Времена</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
   <data name="User" xml:space="preserve">
     <value>Пользователь</value>
+  </data>
+  <data name="Username is not specified" xml:space="preserve">
+    <value>Имя пользователя не указано</value>
+  </data>
+  <data name="You must enter a city name" xml:space="preserve">
+    <value>Вы должны ввести название города</value>
+  </data>
+  <data name="You must specify a system" xml:space="preserve">
+    <value>Вы должны указать систему</value>
   </data>
 </root>

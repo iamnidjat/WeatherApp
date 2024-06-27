@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 quality-table">
-            <h2 class="text-center">Air Quality for the Selected City</h2>
+            <h2 class="text-center">@Localizer["Air Quality for the Selected City"]</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -23,7 +23,7 @@
             </table>
             <div class="text-center">
                 <form method="get">
-                    <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-custom">Return</button>
+                    <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-custom">@Localizer["Return"]</button>
                 </form>
             </div>
         </div>

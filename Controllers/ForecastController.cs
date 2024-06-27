@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using WeatherApp.Config;
@@ -20,7 +21,8 @@ namespace WeatherApp.Controllers
         private readonly IGetAirQualityDataRepository _getAirQualityDataRepository;
 
         public ForecastController(IForecastRepository forecastAppRepo, 
-            IPreciseForecastData preciseForecastData, IGetAirQualityDataRepository getAirQualityDataRepository)
+            IPreciseForecastData preciseForecastData, IGetAirQualityDataRepository getAirQualityDataRepository,
+            IStringLocalizer<SearchCity> localizer)
         {
             _forecastRepository = forecastAppRepo;
             _preciseForecastData = preciseForecastData;

@@ -1,5 +1,8 @@
 ﻿@using WeatherApp
 @using WeatherApp.Models
 @using WeatherApp.ViewModels @*Now we can use files from ViewModels folder in every view*@
+@using WeatherApp.Services.Implementations;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer Localizer
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 

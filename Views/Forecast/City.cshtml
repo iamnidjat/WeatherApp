@@ -8,7 +8,7 @@
 
             <div class="form-group col-md-offset-3 col-md-5">
 
-                <h2>Forecast for the selected city</h2>
+                <h2>@Localizer["Forecast for the selected city"]</h2>
 
                 <label asp-for="@Model.City.Name"></label>
                 <span>@Model.City.Name</span>
@@ -65,11 +65,11 @@
             <div class="form-group col-md-offset-3 col-md-5">
 
                 <a href="@Url.Action("FullWeatherData", "Forecast", new { latitude = Model.City.Latitude, longitude = Model.City.Longitude, dailyData = "temperature_2m_max" })" class="btn btn-primary">
-                    Get the full weather data
+                    @Localizer["Get the full weather data"]
                 </a>
 
                 <form method="get">
-                    <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-success">Return</button>
+                    <button asp-controller="Forecast" asp-action="SearchCity" class="btn btn-success">@Localizer["Return"]</button>
                 </form>
 
             </div>
